@@ -32,7 +32,7 @@ package boj_10171;
 public class Main {
 	
 	public static void main(String[] args) {
-		System.out.println("\\    /\\"); // 역슬래시를 문자열에 입력해야함.
+		System.out.println("\\    /\\"); // 역슬래시는 Escape-Sequence에 사용되므로 문자열 취급할 때는 두번 입력해야한다.
 		System.out.println(" )  ( ')");
 		System.out.println("(  /  )");
 		System.out.println(" \\(__)|");
