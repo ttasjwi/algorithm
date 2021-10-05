@@ -52,20 +52,23 @@ import java.util.*;
 	 */
 
 
-public class Main1 {
+class Main1 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
 		
 		for (int i=1; i<=n; i++) {//1부터 n까지
-			
-			for (int j=1; j<=i; j++) {
-				System.out.print('*'); // '*'을 값만큼 출력
-			}
-			
-			System.out.println(); // 줄바꿈
+			printCharBar(i, '*');
 		}
 		
 		scanner.close();
+	}
+
+	private static void printCharBar(int length, char ch) {
+		for (int i=1; i<=length; i++) {
+			System.out.print(ch); // '*'을 값만큼 출력
+			if(i==length) System.out.println();
+		}
+		return;
 	}
 }
