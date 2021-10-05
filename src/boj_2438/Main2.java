@@ -6,7 +6,7 @@ import java.util.*;
 	 * BOJ(백준) 3단계 - for문
 	 * 
 	 * <<boj_2439>>
-	 * 오른쪽에서 시작하는 별 찍기(풀이 1 : 이중 for문)
+	 * 오른쪽에서 시작하는 별 찍기(풀이 2 : for문, Arrays.fill 메서드)
 	 * https://www.acmicpc.net/problem/2439
 	 * 
 	 * 첫째 줄에는 별 1개, 둘째 줄에는 별 2개, N번째 줄에는 별 N개를 찍는 문제
