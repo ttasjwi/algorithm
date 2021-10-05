@@ -51,12 +51,12 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
 		scanner.close();
-		
-		print_N_1(n); // n부터 1까지 출력
+        
+		print_N_1(n);
 	}
 
 	private static void print_N_1(int n) {
-		for (int i=n; i>=1; i--) {
+		for (int i=n; i>=1; i--) { // n부터 1까지 출력
 			System.out.println(i);
 		}
 	}
