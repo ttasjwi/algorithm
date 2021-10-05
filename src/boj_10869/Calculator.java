@@ -1,7 +1,6 @@
 package boj_10869;
 
 class Calculator {
-	//boj_10869에 사용
 	//사칙연산의 결과를 반환해주는 static 메서드들을 묶어둔 클래스
 	
 	static int addition(int a, int b) { // 합
