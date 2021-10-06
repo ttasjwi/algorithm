@@ -1,4 +1,4 @@
-package boj_2438;
+package boj_2439;
 
 import java.util.*;
 
