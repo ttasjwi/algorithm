@@ -92,7 +92,7 @@ public class Main {
 				
 		for (int i=0; i<numberTestCase; i++) {
 			int numberStudent = scanner.nextInt(); // 인원수
-			printlnOverAverageRate(scanner, numberStudent); // 인원수만큼 값을 입력받아 평균 이상인 점수의 비율을 출력
+			printlnOverAverageRate(scanner, numberStudent); // 인원수만큼 값을 입력받아 평균보다 큰 점수의 비율을 출력
 		}
 	}
 
