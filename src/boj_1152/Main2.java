@@ -75,10 +75,10 @@ import java.util.StringTokenizer;
 public class Main2 {
 
 	public static void main(String[] args) {
-		Scanner scanner1 = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		
-		String str = scanner1.nextLine().trim(); // 문자열을 라인단위로 입력받아 저장 후 양 끝의 공백을 제거
-		scanner1.close();
+		String str = scanner.nextLine().trim(); // 문자열을 라인단위로 입력받아 저장 후 양 끝의 공백을 제거
+		scanner.close();
 		
 		int count = getNumberOfWord(str); // 문자열에서 공백으로 구분한 단어의 개수
 		System.out.println(count);
