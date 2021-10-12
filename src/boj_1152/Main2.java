@@ -85,16 +85,8 @@ public class Main2 {
 	}
 
 	private static int getNumberOfWord(String str) {
-		if ("".equals(str)) return 0; // 공백을 입력했을 경우 0 반환
-		
-		int count = 0;
 		StringTokenizer st = new StringTokenizer(str, " "); // " "로 토큰을 나누는 StringTokenizer
-		
-		while(st.hasMoreTokens()) {
-			st.nextToken(); // 다음 토큰을 비움
-			count ++;
-		}
-		return count;
+		return st.countTokens(); // 전체 토큰의 수를 반환
 	}
-
+	
 }
