@@ -6,7 +6,7 @@ import java.util.*;
 	 * BOJ(백준) 7단계 - 문자열
 	 * 
 	 * <<boj_1157>>
-	 *  입력 문자열에서 가장 많이 사용된 알파벳 반환하기
+	 *  입력 문자열에서 가장 많이 사용된 알파벳 반환하기 (풀이 1 : 문자의 갯수를 저장하는 배열 활용)
 	 *  https://www.acmicpc.net/problem/1157
 	 *  
 	 *  알파벳 대소문자로 된 단어가 주어지면,
@@ -50,7 +50,7 @@ import java.util.*;
 	 */
 
 
-public class Main {
+public class Main1 {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
