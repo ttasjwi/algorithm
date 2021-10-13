@@ -89,7 +89,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 
-public class Main {
+public class Main1 {
 
 	public static void main(String[] args) throws IOException {
 		
