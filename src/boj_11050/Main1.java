@@ -54,7 +54,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main1 {
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -64,14 +64,14 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(input, " ");
 		int n = Integer.parseInt(st.nextToken());
 		int r = Integer.parseInt(st.nextToken());
-		int nCr = MyMath.combination(n, r); // 조합
+		int nCr = MyMath1.combination(n, r); // 조합
 		
 		System.out.println(nCr);
 	}
 
 }
 
-class MyMath {
+class MyMath1 {
 	
 	static int combination(int n, int r) {
 		
