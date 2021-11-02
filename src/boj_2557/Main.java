@@ -1,10 +1,9 @@
 package boj_2557;
-// 요구사항 : Hello World!를 출력하시오.
 
-public class Main {
+class Main {
 	
 	public static void main(String[] args) {
-		System.out.println("Hello World!");
+		System.out.println("Hello World!"); // 지정 문자열을 출력
 	}
 
 }
