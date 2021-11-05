@@ -10,8 +10,8 @@ public class Answer {
         int nmbOfBars = Integer.parseInt(br.readLine());
         br.close();
 
-        final char ch = '*';
         StringBuilder sb = new StringBuilder();
+        final char ch = '*';
         for (int i=0; i<nmbOfBars; i++) {
             for (int j=0; j<i+1; j++) {
                 sb.append(ch);
