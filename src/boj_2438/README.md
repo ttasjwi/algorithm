@@ -3,7 +3,7 @@
 난이도 : Bronze3
 BOJ(백준) 1단계 - 입출력과 사칙연산
 
-첫째 줄에는 별 1개, 둘째 줄에는 별 2개, ... N번째 줄에는 별 N개를 찍는 문제
+각 줄마다 N개 별찍기
 문제 : <a href="https://www.acmicpc.net/problem/2438" target="_blank"> [링크]</a>
 ---  
 
