@@ -2,8 +2,8 @@
 
 난이도 : Bronze2  
 
-OX문자열을 받아서 총점 구하기(연속 O이면 추가점수)  
-문제 : <a href="https://www.acmicpc.net/problem/8958" target="_blank"> [링크]</a>
+- OX문자열을 받아서 총점 구하기(연속 O이면 추가점수)
+- 문제 : <a href="https://www.acmicpc.net/problem/8958" target="_blank"> [링크]</a>
 ---  
 
 ### Answer : 백준 답안 제출용
