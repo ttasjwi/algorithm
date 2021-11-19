@@ -9,7 +9,7 @@
 #asdf
 .idea/
 bin/
-BOJ.iml
+*.iml
 
 # User-specific stuff
 .idea/**/workspace.xml
