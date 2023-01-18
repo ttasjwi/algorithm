@@ -1,10 +1,33 @@
-# Programmers 120583 : 중복된 숫자 개수
+# 문제
+- 플랫폼 : 프로그래머스
+- 번호 : 120583
+- 제목 : 중복된 숫자 개수
 - 난이도 : Level 0
 - array에 n이 몇 개 있는 지
 - 문제 : [링크](https://school.programmers.co.kr/learn/courses/30/lessons/120583)
 
 ---
 
+# 필요 알고리즘
+- java : 반복문
+- python : 리스트 함수
+
+---
+
+# Python
+```python
+from typing import List
+
+
+def solution(array: List[int], n: int):
+    return array.count(n)
+
+```
+- 리스트의 count 메서드는 해당 요소의 갯수를 반환한다.
+
+---
+
+# Java
 ## 풀이1 : 반복문
 ```java
     public int solution(int[] array, int n) {
