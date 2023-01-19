@@ -18,7 +18,7 @@ public class Main {
 
         StringBuilder sb = new StringBuilder();
         sb.append(answer1).append('\n').append(answer2);
-        System.out.println(sb);
+        System.out.print(sb);
     }
 
 }
