@@ -1,11 +1,18 @@
-# BOJ 00000 : 문제명
-
+# 문제
+- 플랫폼 : 백준
+- 번호 : xxx
+- 제목 : xxx
 - 난이도 : Bronze 5
-- 문제 개요
-- 문제 : [링크](https://www.acmicpc.net/problem/00000)
+- yyy
+- 문제 : <a href="https://www.acmicpc.net/problem/번호" target="_blank">링크</a>
 
 ---
 
-## 풀이
+# 필요 알고리즘
+- 없음
+
+---
+
+# Python
 
 ---
