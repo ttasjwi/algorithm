@@ -1,30 +1,22 @@
-
-# \[BOJ 02744\] 대소문자 바꾸기
-
-- 난이도 : Bronze5
-- 문자열 입력받고 대소문자를 바꾸기
-- 문제: <a href="https://www.acmicpc.net/problem/2744" target="_blank"> [링크]</a>
+# 문제
+- 플랫폼 : 백준
+- 번호 : 02744
+- 제목 : 대소문자 바꾸기
+- 난이도 : Bronze 5
+- 입력으로 주어진 단어에서 대문자는 소문자로, 소문자는 대문자로 바꾼 단어를 출력
+- 문제 : <a href="https://www.acmicpc.net/problem/2744" target="_blank">링크</a>
 
 ---
 
-## 풀이
-```java
-public static String solution(String word) {
-    StringBuffer sb = new StringBuffer();
-    for (int i=0; i<word.length(); i++) {
-        char ch = word.charAt(i);
-        if (Character.isLowerCase(ch)) {
-            sb.append(Character.toUpperCase(ch));
-        } else {
-            sb.append(Character.toLowerCase(ch));
-        }
-    }
-    return sb.toString();
-}
+# 필요 알고리즘
+- 없음
+
+---
+
+# 풀이
+```python
+print(input().swapcase(), end='')
 ```
-- 방법 1 : isLowerCase, isUpperCase 확인 후 분기처리(대 -> 소, 소 -> 대)
-- 방법 2 : 아스키코드 값 활용
-    - 대문자 : 65~90
-    - 소문자 : 97~122
+- swapcase 메서드는 대소문자를 바꾼다.
 
 ---
