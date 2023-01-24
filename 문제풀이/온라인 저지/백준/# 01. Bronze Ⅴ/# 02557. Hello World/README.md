@@ -1,19 +1,22 @@
-# \[BOJ 02557\] Hello World
+# 문제
+- 플랫폼 : 백준
+- 번호 : 02557
+- 제목 : Hello World
+- 난이도 : Bronze 5
+- Hello World!를 출력
+- 문제 : <a href="https://www.acmicpc.net/problem/2557" target="_blank">링크</a>
 
-난이도 : Bronze5
-
-Hello World 콘솔창 출력
-문제 : <a href="https://www.acmicpc.net/problem/2557" target="_blank"> [링크]</a>
-
----  
-
-## Main.java : 백준 제출 답안
-
-- 소스 코드 : <a href="src/Main.java" target="_blank">gitHub</a>
-- `System.out.println` 문으로 단순 출력
 ---
 
-## Review
-- 모든 프로그래밍 언어 학습의 시작, Hello World
+# 필요 알고리즘
+- 없음
+
+---
+
+# 풀이
+```python
+print('Hello World!')
+
+```
 
 ---
