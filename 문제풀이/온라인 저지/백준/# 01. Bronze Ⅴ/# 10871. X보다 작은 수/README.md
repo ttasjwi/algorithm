@@ -1,27 +1,23 @@
-# \[BOJ 10871\] X보다 작은 수
-
+# 문제
+- 플랫폼 : 백준
+- 번호 : 10871
+- 제목 : X보다 작은 수
 - 난이도 : Bronze 5
-- 숫자 비교하기
-- 문제 : https://www.acmicpc.net/problem/10871
+- X보다 작은 수를 입력받은 순서대로 공백으로 구분해 출력
+- 문제 : <a href="https://www.acmicpc.net/problem/10871" target="_blank">링크</a>
 
 ---
 
-## 풀이
-```java
-    public static void main(String[] args) throws IOException {
-        int n = readInt();
-        int x = readInt();
-        StringBuilder sb = new StringBuilder();
-        int input;
-        for (int i=0; i<n; i++) {
-            input = readInt();
-            if (input < x) {
-                sb.append(input).append(' ');
-            }
-        }
-        System.out.print(sb);
-    }
+# 필요 알고리즘
+- 없음
+
+---
+
+# 풀이
+```python
+n, x = map(int, input().split())
+answer = ' '.join([i for i in input().split() if int(i) < x])
+print(answer, end='')
 ```
-- 숫자를 순차적으로 입력받고 x보다 작으면 StringBuilder에 append한다.
 
 ---
