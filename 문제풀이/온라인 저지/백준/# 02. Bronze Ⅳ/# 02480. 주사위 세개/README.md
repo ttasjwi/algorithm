@@ -1,54 +1,41 @@
-
-# \[BOJ 02480\] 주사위 세개
-
-- 난이도 : Bronze4
-- 숫자 3개를 비교하여 분기처리
-- 문제: <a href="https://www.acmicpc.net/problem/2480" target="_blank"> [링크]</a>
+# 문제
+- 플랫폼 : 백준
+- 번호 : 02480
+- 제목 : 주사위 세개
+- 난이도 : Bronze 4
+- 3개 주사위의 나온 눈이 주어질 때, 상금을 계산
+- 문제 : <a href="https://www.acmicpc.net/problem/2480" target="_blank">링크</a>
 
 ---
 
-## 풀이
+# 필요 알고리즘
+- 정렬
 
-### 카운터 사용
-```java
-int[] counter = new int[7];
+---
 
-for (int i=0; i<3; i++) {
-    counter[readInt()]++;
-}
+# 풀이
+```python
+def main():
+    a, b, c = sorted(map(int, input().split()))
+    price = solution(a, b, c)
+    print(price, end='')
 
+
+def solution(a, b, c):
+    if a == c:  # 세 눈이 모두 같다
+        return 10000 + a * 1000
+    elif a != b and b != c:  # 모두 다르다
+        return c * 100
+    else:  # 두 가지가 같을 때
+        return 1000 + b * 100
+
+
+if __name__ == '__main__':
+    main()
 ```
-- 숫자의 종류는 1~6이고, 각각 나온 횟수가 중요하다.
-- 나온 숫자에 해당하는 카운터를 증가시킨다.
-
-### 값 구하기
-```java
-int answer;
-
-int maxNumber = 0;
-
-for (int i=1; i<=6; i++) {
-    if (counter[i] == 3) {
-        answer = 10000 + (i * 1000);
-        System.out.print(answer);
-        return;
-    } else if (counter[i] == 2) {
-        answer = 1000 + i * 100;
-        System.out.print(answer);
-        return;
-    } else if (counter[i] == 1){
-        maxNumber = (i > maxNumber) ? i : maxNumber;
-    } else {
-        continue;
-    }
-}
-answer = maxNumber * 100;
-System.out.print(answer);
-```
-- 카운터를 1번부터 6번까지 순서대로 읽으면서
-  - 집계 갯수가 3개 : 같은 눈이 세 개 -> 결과 반환
-  - 집계 갯수가 2개 : 같은 눈이 두 개 -> 결과 반환
-  - 집계 갯수가 1개 : 여태 나온 눈 중 최댓값인지 확인 후 갱신
-- 끝까지 돈 경우는 서로 다른 눈이 3개이므로, 다른 눈에 따른 결과값을 출력하면 됨
+- 크기 순으로 숫자를 정렬하면 편리하다.
+  - a,c가 같다 : 모든 수가 같다
+  - a,b,c : 모두 다른 경우
+  - 그 외 : 두 수가 같은 경우
 
 ---

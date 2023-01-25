@@ -7,10 +7,11 @@ def main():
 def solution(a, b, c):
     if a == c:  # 세 눈이 모두 같다
         return 10000 + a * 1000
-    elif a != b and b != c: # 모두 다르다
+    elif a != b and b != c:  # 모두 다르다
         return c * 100
-    else: # 두 가지가 같을 때
+    else:  # 두 가지가 같을 때
         return 1000 + b * 100
 
 
-main()
+if __name__ == '__main__':
+    main()
