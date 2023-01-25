@@ -1,38 +1,32 @@
-# BOJ 10101 : 삼각형 외우기
+# 문제
+- 플랫폼 : 백준
+- 번호 : 10101
+- 제목 : 삼각형 외우기
 - 난이도 : Bronze 4
-- 직사각형 내부 점에서 수선의 길이 최솟값
-- 문제 : [링크](https://www.acmicpc.net/problem/1085)
+- 3개의 줄에 걸쳐 삼각형의 각의 크기가 주어질 때 삼각형의 종류 출력
+- 문제 : <a href="https://www.acmicpc.net/problem/10101" target="_blank">링크</a>
 
----  
+---
 
-## 풀이
+# 필요 알고리즘
+- 없음
+
+---
+
+# 풀이
 ```python
-import sys
+a, b, c = int(input()), int(input()), int(input())
 
-input_int = lambda: int(sys.stdin.readline().rstrip())
+if a + b + c != 180:
+    answer = 'Error'
+elif a == b == c:  # 정삼각형
+    answer = 'Equilateral'
+elif a == b or b == c or c == a:  # 이등변 삼각형
+    answer = 'Isosceles'
+else:
+    answer = 'Scalene'
 
-
-def main():
-    a = input_int()
-    b = input_int()
-    c = input_int()
-    answer = solution(a, b, c)
-    print(answer, end='')
-
-
-def solution(a, b, c):
-    if a + b + c != 180:
-        return 'Error'
-    if a == b == c:  # 정삼각형
-        return 'Equilateral'
-    if a == b or b == c or c == a:  # 이등변 삼각형
-        return 'Isosceles'
-    return 'Scalene'
-
-
-main()
-
+print(answer, end='')
 ```
-문제에서 주어진 조건대로 분기 처리하면 됨
 
 ---
