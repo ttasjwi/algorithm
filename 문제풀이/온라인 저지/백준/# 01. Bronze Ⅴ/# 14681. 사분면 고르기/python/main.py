@@ -16,4 +16,5 @@ def solution(x, y):
         return '4'
 
 
-main()
+if __name__ == '__main__':
+    main()
