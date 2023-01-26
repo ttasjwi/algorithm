@@ -1,20 +1,27 @@
-# \[BOJ 10953] A+B - 6
-
-- 난이도 : Bronze2
-- 각 라인별로 숫자들의 합을 구하여 모두 출력하기
+# 문제
+- 플랫폼 : 백준
+- 번호 : 10953
+- 제목 : A+B - 6
+- 난이도 : Bronze 2
+- 각 테스트 케이스마다 A+B를 출력
 - 문제 : <a href="https://www.acmicpc.net/problem/10953" target="_blank">링크</a>
-- 풀이 소스코드 :  <a href="src/Main.java" target="_blank">gitHub</a>
-
----  
-
-## Main.java : 백준 제출 답안
-- 테스트케이스의 갯수만큼 반복문 돌림
-- ','를 구분자로 하는데, 어차피 전부 한자리 숫자이므로 0번째 자리 문자, 2번째 자리 문자를 각각 파싱해서 처리함
-- 라인별로 숫자값들 합을 구하고 `StringBuilder`로 수집
 
 ---
 
-# Review
-- 한자리 숫자 파싱에 있어서는 문자에서 '0'을 제하는 방식이 제일 빠른 것 같다.
+# 필요 알고리즘
+- 문자열 처리
+
+---
+
+# 풀이
+```python
+import io, os, sys
+
+lines = io.BytesIO(os.read(0, os.fstat(0).st_size)).readlines()[1:]
+print = sys.stdout.write
+
+answer = '\n'.join(str(sum(map(int, line.decode().split(sep=',')))) for line in lines)
+print(answer)
+```
 
 ---
