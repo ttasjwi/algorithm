@@ -1,71 +1,93 @@
-# \[BOJ 02018\] 수들의 합 5
-
-- 난이도 : Silver5
-- 투 포인터, 나머지 연산
-- 문제 : <a href="https://www.acmicpc.net/problem/2018" target="_blank"> [링크]</a>
-
----  
-
-## 풀이1 : 숫자 분할(나머지)
-```java
-    public static void main(String[] args) throws IOException {
-        int n = readInt();
-        int answer = 0;
-        int cnt = 1;
-
-        do {
-            if (n % cnt == 0) {
-                answer++;
-            }
-            n -= cnt++;
-        } while (n > 0);
-        System.out.print(answer);
-    }
-```
-- 숫자의 갯수를 1로 둔다.
-- n을 숫자의 갯수로 나눴을 때 나누어 떨어지는지 확인한다.
-  - 숫자의 갯수만큼 남은 숫자를 분배 가능하다는 것이다
-  - answer를 증가시킨다.
-- n에서 cnt를 차감하고, cnt를 증가시킨다.
+# 문제
+- 플랫폼 : 백준
+- 번호 : 02018
+- 제목 : 수들의 합 5
+- 난이도 : Silver 5
+- 자연수 N을 연속된 자연수의 합으로 나타내는 가지수를 출력
+- 문제 : <a href="https://www.acmicpc.net/problem/2018" target="_blank">링크</a>
 
 ---
 
-## 풀이2 : 투포인터
-```java
+# 필요 알고리즘
+- 투포인터
+- 수학 - 분할
 
-    public static void main(String[] args) throws IOException {
-        int n = readInt();
-        int lt = 1;
-        int rt = 1;
-        int sum = 0;
-        int answer = 0;
+---
 
-        while (lt <= n && rt <= n) {
-            sum += rt;
-            if (sum == n) {
-                answer++;
-                sum -= lt;
-                lt++;
-            }
-            while (sum >= n) {
-                sum -= lt;
-                lt++;
-                if (sum == n) {
-                    answer++;
-                }
-            }
-            rt++;
-        }
-        System.out.print(answer);
-    }
+# 풀이
+
+## 풀이1 : 투포인터 사용
+```python
+n = int(input())
+
+lt, rt = 1, 2
+count = 1  # 자기 자신을 센 것
+
+sum = 3
+while lt < rt <= n:
+    if sum < n:
+        rt += 1
+        sum += rt
+    else:
+        if sum == n:
+            count += 1
+        sum -= lt
+        lt += 1
+print(count, end='')
 ```
-- 투포인터를 사용함
-- lt, rt를 1에서 시작한다.
-- sum을 현재 rt값에 따라 증가시킨다.
-- sum, n을 비교하고 같으면 answer를 증가시키고 lt를 뒤로 민다.
-  - 기존 lt값만큼 뺀다음에 lt를 증가시켜야한다.
-- 이후, sum이 n보다 크거나 같으면 작아질 때까지 lt를 민다.
-  - 이 도중에, sum이 같아지는 순간이 오면 answer를 증가시킨다.
-- rt를 증가시킨다.
+- 우선, n 자기 자신만 합하는 것을 고려하여 count를 1로 센다.
+- 투 포인터를 놓는다. 1, 2에 두고, lt는 rt 앞에 있어야 하며, 두 수는 모두 n 이하여야한다. lt부터 rt까지의 합인 3을 sum으로 초기화한다.
+- 반복
+  - sum이 n보다 작으면 rt를 증가시켜, 구간합을 증가시켜본다.
+  - sum이 n보다 크거나 같을 때
+    - 일단 sum이 n과 같으면 count를 증가시킨다.
+    - lt를 1 증가시켜서 구간합을 감소시킨다.
+- 최종적인 count를 반환한다.
+- 이렇게 하면 2688ms 소요된다. 다른 언어는 잘 되지만, 파이썬은 매우 느리게 동작한다.
+
+## 풀이2
+```python
+n = int(input())
+
+answer = 0
+cnt = 1
+
+while True:
+    if n % cnt == 0:
+        answer += 1
+    n -= cnt
+    cnt += 1
+
+    if n <= 0:
+        break
+
+print(answer, end='')
+```
+- 한 숫자를 여러 숫자의 합으로 쪼개는 행위는 0,1,2,3,4 와 같은 연속적인 숫자에 남은 양의 정수를 정수개씩 균등하게 분배하는 행위와 같다.
+- 각 숫자별 분배량이 정수가 아니면 해당 갯수의 연속적인 숫자합은 존재하지 않는다.
+- 예)
+  - 15 = (0) + 15 -> 연속된 숫자 1개에 15를 하나를 분배 가능 (o) -> 15
+  - 15 = (0 + 1) + 14 -> 연속된 숫자 2개에 14를 둘로 나눠서 분배 가능 (o) -> 7 + 8
+  - 15 = (0 + 1 + 2) + 12 -> 연속된 숫자 3개에 12를 셋으로 나눠서 분배 가능 (o) -> 4 + 5 + 6
+  - 15 = (0 + 1 + 2 + 3) + 9 -> 연속된 숫자 4개 9를 넷으로 나눠서(정수여야 함) 분배 불가능 (x)
+  - 15 = (0 + 1 + 2 + 3 + 4) + 5 -> 연속된 숫자 5개에 5를 다섯으로 나눠서 분배 가능 (o) -> 1 + 2 + 3 + 4 + 5
+  - 15 = (0 + 1 + 2 + 3 + 4 + 5) + 0 -> 0은 더 이상 양의 정수로 균등하게 나눌 수 없다. 여기서 break
+- 이를 코드로 해석해보면
+  - cnt는 숫자의 갯수, n은 연속된 숫자들에게 균등하게 분배해야할 숫자가 된다.
+  - 무한 반복
+  - n이 cnt로 나누어 떨어지면 균등 분배가 가능하므로 체크(answer 증가)
+  - n을 cnt 만큼 감소시키고, cnt를 1 증가 시키는 것을 반복
+  - 만약 분배시킬 숫자 n이 0보다 작거나 같으면 반복을 중지
+  - 이렇게 구한 answer를 출력
+
+---
+
+# 결과
+![img.png](imgs/result1.png)
+
+![img.png](imgs/result2.png)
+
+- 풀이1은 2688ms 소요
+- 풀이2는 36ms 소요
 
 ---
