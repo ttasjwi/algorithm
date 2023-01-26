@@ -1,23 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 04963
-- 제목 : 섬의 개수
-- 난이도 : Silver 2
-- 각 테스트 케이스에 대해서, 섬의 개수를 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/4963" target="_blank">링크</a>
-
----
-
-# 필요 알고리즘
-- DFS(깊이 우선 탐색)
-- BFS(너비 우선 탐색)
-
----
-
-# 풀이
-
-## 풀이1 : DFS(내 풀이)
-```python
 import io, os, sys
 
 sys.setrecursionlimit(10 ** 6)
@@ -72,7 +52,3 @@ def dfs(r: int, c: int):
 
 if __name__ == '__main__':
     main()
-```
-- dfs를 통해 방문한 육지는 바다로 바꿔가면서 풀었다.
-
----
