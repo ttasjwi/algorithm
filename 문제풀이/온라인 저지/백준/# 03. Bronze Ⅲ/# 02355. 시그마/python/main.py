@@ -1,3 +1,3 @@
 a, b = map(int, input().split())
-answer = ((a + b) * (abs(b - a) + 1)) // 2
+answer = (abs(b - a) + 1) * (a + b) // 2
 print(answer, end='')
