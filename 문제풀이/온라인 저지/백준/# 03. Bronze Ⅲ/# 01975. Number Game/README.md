@@ -1,45 +1,53 @@
+# 문제
+- 플랫폼 : 백준
+- 번호 : 01975
+- 제목 : Number Game
+- 난이도 : Bronze 3
+- N을 먼저 정하고, 이 숫자를 2진법, 3진법, 4진법, ..., 100만진법, 100만 1진법 등등으로 바꾸어 보면서, 마지막자리에 연속된 0의 개수를
+모두 더한 것들을 출력
+- 문제 : <a href="https://www.acmicpc.net/problem/1975" target="_blank">링크</a>
 
 ---
 
-# \[BOJ 01975] Number Game
+# 필요 알고리즘
+- 메모이제이션
 
-- 난이도 : Bronze3
-- 숫자를 여러 진법으로 변환해서, 끝자리의 연속된 0의 갯수들을 구하기
-- 문제 : <a href="https://www.acmicpc.net/problem/01975" target="_blank"> [링크]</a>
-- 개발환경 : java 11, IntelliJ IDE
-- 시간 : 448ms
-
----  
+---
 
 # 풀이
+```python
+import io, os, sys
 
-## 1) 변수
+print = sys.stdout.write
+cache = {}
 
-- T : 테스트케이스의 갯수
-- N : 사용자로부터 입력받은 값
-- tmp : 후술할 작업을 위해 사용할 변수. 초기화 값은 N이다.
-- cnt : 끝자리의 0의 갯수
 
-## 2) 입출력
-- 입력 : BufferedReader
-- 출력 : StringBuilder + System.out.println()
+def main():
+    _, *numbers = map(int, io.BytesIO(os.read(0, os.fstat(0).st_size)).read().decode().split())
+    answer = '\n'.join(get_result(n) for n in numbers)
+    print(answer)
 
-## 3) 풀이
 
-1. 사용자로부터 테스트케이스의 갯수 T를 입력받는다. 
-2. T만큼 반복해서 N들을 입력받는다. 각각의 N에 대하여, 다음 작업을 반복해서 수행한다.  
-반복횟수 : 2<=j<=N (j는 진수인데 진수가 N을 넘어갈 끝자리의 수가 0이 나올 수 없다.)  
-초기화 : 
-   1) tmp에 N을 저장한다.
-   2) tmp을 j(진수)로 나눴을 때 0이면,
-      - 끝자리의 수가 0이라는 뜻이다. cnt값을 증가시킨다.
-      - tmp를 j로 나눈 몫을 tmp에 저장시키고, 다시 tmp를 j로 나눠서 판별하고 위의 작업을 반복한다.
-   3) 나머지가 0이 아니면, sb에 cnt를 append 시키고 cnt를 0으로 초기화 시킨다.
-3. StringBuilder에 저장된 문자열들을 출력한다.
+def get_result(n):
+    if n in cache:
+        return cache[n]
 
----
+    result = 0
+    for i in range(2, n + 1):
+        copy_n = n
 
-## Review
-- 문제 자체를 이해하는데 시간이 오래 걸렸음.
+        while copy_n % i == 0:
+            result += 1
+            copy_n //= i
+
+    cache[n] = str(result)
+    return cache[n]
+
+
+if __name__ == '__main__':
+    main()
+```
+- 문제에서는 같은 수가 입력되지 않는다는 제약이 있고, 입력 라인수가 10만을 넘어간다.
+- 중복된 계산을 다시 하지 않도록 별도로 cache를 해두면 풀이 속도를 대폭 절감시킬 수 있다.
 
 ---
