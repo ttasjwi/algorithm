@@ -44,6 +44,8 @@
 ## 정렬
 - [버블정렬 : O(N^2)](bubble-sort.py)
 - [선택정렬 : O(N^2)](selection-sort.py)
+- [삽입정렬 : O(N^2)](insertion-sort.py) : 단, 거의 정렬되어 있는 상태면 O(N)의 시간복잡도를 가진다.
+
 
 ## 이진 탐색
 
