@@ -43,6 +43,7 @@
 
 ## 정렬
 - [버블정렬 : O(N^2)](bubble-sort.py)
+- [선택정렬 : O(N^2)](selection-sort.py)
 
 ## 이진 탐색
 
