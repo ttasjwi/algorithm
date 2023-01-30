@@ -59,5 +59,6 @@
 
 # 수학
 - [최대공약수(GCD), 최소공배수(LCM)](gcd-lcm.py)
+- [범위 내 소수 판정 : 에라토스테네스의 체](sieve-of-eratosthenes.py)
 
 ---
