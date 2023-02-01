@@ -1,87 +1,77 @@
 # 문제
+- 플랫폼 : 프로그래머스
 - 번호 : 042576
 - 제목 : 완주하지 못한 선수
 - 난이도 : Level 1
 - 완주하지 못한 선수의 이름을 return
-- 문제 : [링크](https://school.programmers.co.kr/learn/courses/30/lessons/42576)
+- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42576" target="_blank">링크</a>
 
 ---
 
-# 필요 알고리즘
-- 해시테이블 자료구조의 탐색의 시간 복잡도는 O(1)이고, 충돌 발생시 연결 리스트를 통한 개별 체이닝 방식을 통해 자료를 보관한다.
-  - 모든 해시 충돌이 발생하면 시간 복잡도는 O(n)이 된다. 
-  - 자바 8에서는 이 충돌 문제를 좀 더 최적화해서 충돌 수가 많아질 경우 내부적으로 연결리스트 대신 '레드-블랙 트리'에 저장하는 형태로 병행하여
-  사용한다.
-- 자바에서 해시테이블은 java.util.HashMap을 사용한다.
-- 해시테이블 자료구조를 이용하여, 여러 요소들의 등장 횟수를 카운팅하는데 사용할 수 있고 각 요소에 대한 접근을 O(1)로 할 수 있다.
-이 기법은 여러 문제에서 자주 이용된다.
+# 필요 지식
+- 해시
+- 파이썬 : Counter
 
 ---
 
 # 풀이
 
-## 개요
+## Python
+
+### 풀이1
+```python
+from collections import Counter
+
+
+def solution(participant, completion):
+    participant, completion = Counter(participant), Counter(completion)
+    for key, value in participant.items():
+        if key not in completion or completion[key] != value:
+            return key
+```
+- 파이썬에서는 Counter를 통해, 각각의 요소들의 등장횟수를 카운터로 모을 수 있다.
+- participant를 순회하면서, completion에 없거나, value가 다른 값을 찾아 바로 반환한다.
+
+### 풀이2
+```python
+from collections import Counter
+
+
+def solution(participant, completion):
+    return list((Counter(participant) - Counter(completion)).keys())[0]
+```
+- Counter 끼리는 뺄 수 있는데, 연산의 결과 카운트가 0이면 해당 key, value 쌍은 삭제시키는 식으로 카운트를 차감한다. 연산의 결과
+남아있는 요소가 우리가 찾는 답이다.
+- 이 점을 이용하여 Counter를 바로 list화 하고, 0번 인덱스의 요소를 반환시키면 된다.
+
+## Java
 ```java
 import java.util.HashMap;
 import java.util.Map;
 
 public class Solution {
 
-    private final Map<String, Integer> participantCounter = new HashMap<>();
-    private final Map<String, Integer> completionCounter = new HashMap<>();
-
     public String solution(String[] participants, String[] completions) {
-        participantCounting(participants);
-        completionCounting(completions);
-        return findDropOut();
-    }
-    
-    // 생략
-}
-```
-- 참여자를 카운팅하고, 완주자를 카운팅한다.
-- 그리고 카운터를 토대로 분석하여 낙오자를 찾아낸다.
+        Map<String, Integer> counter = new HashMap<>();
+        for (String p : participants) counter.put(p, counter.getOrDefault(p, 0) + 1);
+        for (String c : completions) counter.put(c, counter.get(c) - 1);
 
-## participantCounting
-```java
-    private void participantCounting(String[] participants) {
-        for (String participant : participants) {
-            participantCounter.put(participant, participantCounter.getOrDefault(participant, 0) + 1);
-        }
-    }
-```
-- 참여자를 카운팅한다.
-- 값이 존재하지 않을 경우 디폴트 값인 0에 1을 더하여 put한다.
-  - 디폴트 값을 가져오는 메서드로 getOrDefault 메서드가 있다.
-
-## completionCounting
-```java
-    private void completionCounting(String[] completions) {
-        for (String completion : completions) {
-            completionCounter.put(completion, completionCounter.getOrDefault(completion, 0) + 1);
-        }
-    }
-```
-- 위와 같은 방식으로 완주자를 카운팅한다.
-
-## findDropOut
-```java
-    private String findDropOut() {
-        String answer = "";
-        for (Map.Entry<String, Integer> entry : participantCounter.entrySet()) {
-            String participant = entry.getKey();
-            int count = entry.getValue();
-            if (!completionCounter.containsKey(participant) || count != completionCounter.get(participant)) {
-                answer = participant;
-                break;
+        for (String key : counter.keySet()) {
+            if (counter.get(key) != 0) {
+                return key;
             }
         }
-        return answer;
+        return "";
     }
 
 }
 ```
-- 참여자 카운터의 entrySet에서 key, value를 찾아온다.
-- 완주자 카운터에 참여자의 key가 없거나, 해당 key의 카운트가 일치하지 않으면 해당 이름의 낙오자가 존재한다는 것이다. 이를 반환하면 된다.
+- 자바에서는 카운터가 없으므로 직접 카운터를 만들어야한다.
+- 카운터에, 참가자가 등장할 때마다 참가자의 카운트를 증가시킨다.
+  - key를 참가자명, value를 참가자 등장 횟수로 한다.
+  - `.getOrDefault(...)`를 사용하면 기본값을 지정하여 가져올 수 있다.
+- 완주자를 순서대로 참가자 카운터에서 차감한다.
+- 카운터의 keySet을 순서대로 탐색하면서, 해당 key의 카운트가 0이 아닌 key를 찾아내 바로 반환하면 된다.
+- 마지막에 있는 null은 문제의 조건대로라면 절대 반환될 일이 없지만 작성하지 않으면 컴파일 에러가 발생하기 때문에 작성했다.
 
 ---
