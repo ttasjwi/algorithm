@@ -1,18 +1,36 @@
-
-# 1-2. 대소문자 변환
-
-- 분류 : 문자열(String)
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 1-2 문제)
-
----
-
-## 시간복잡도
-
-- 문자열의 첫번째 자리부터 단어를 순차적으로 변환하므로 문자열의 길이를 N이라 할 때, O(N)
+# 문제
+- 플랫폼 : 인프런 강의
+- 번호 : 1.2
+- 제목 : 대소문자 변환
+- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 1.2 문제)
 
 ---
 
-## 풀이
+# 필요 지식
+- 문자열 처리
+
+---
+
+# 풀이
+
+## Python
+```python
+print(input().swapcase())
+```
+```python
+answer = []
+for ch in input():
+    code = ord(ch)
+    if 65 <= code <= 90:
+        answer.append(chr(code + 32))
+    else:
+        answer.append(chr(code - 32))
+print(''.join(answer))
+```
+- 방법 1 : `swapcase()`로 대소문자 변환
+- 방법 2 : ord로 아스키 코드 값을 가져와서, 대문자 범위이면 32를 더하고, 아니면 32를 빼서 변환
+
+## Java
 ```java
     private static String solution(String str) {
         StringBuilder sb = new StringBuilder();
