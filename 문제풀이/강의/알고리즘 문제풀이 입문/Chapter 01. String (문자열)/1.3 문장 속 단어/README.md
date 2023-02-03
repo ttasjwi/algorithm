@@ -1,19 +1,39 @@
-
-
-# 1-3. 문장속 단어
-
-- 분류 : 문자열(String)
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 1-3 문제)
-
----
-
-## 시간복잡도
-- 문자열의 단어의 갯수만큼 반복해야하므로, 단어의 갯수를 N이라 하면 O(N)
+# 문제
+- 플랫폼 : 인프런 강의
+- 번호 : 1.3
+- 제목 : 문장 속 단어
+- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 1.3 문제)
 
 ---
 
+# 필요 지식
+- 문자열 처리
 
-## 풀이 1
+---
+
+# 풀이
+
+## Python
+### 풀이1
+```python
+max = -1
+max_str = ''
+for word in input().split():
+    if len(word) > max:
+        max = len(word)
+        max_str = word
+print(max_str, end='')
+```
+- 반복문 돌면서, 길이가 더 긴 것으로 계속 갱신
+
+### 풀이2
+```python
+print(max(input().split(), key=len))
+```
+- max 함수로도 찾을 수 있는데 이 경우, 우선순위가 같다면 먼저 발견된 것을 반환한다.
+
+## Java
+### 풀이 1
 ```java
 public class Main1  {
 
@@ -40,9 +60,7 @@ public class Main1  {
 ```
 - split으로 분리 후 length가 가장 긴 단어를 반환하도록 함
 
----
-
-## 풀이2
+### 풀이2
 ```java
 public class Main2 {
 
