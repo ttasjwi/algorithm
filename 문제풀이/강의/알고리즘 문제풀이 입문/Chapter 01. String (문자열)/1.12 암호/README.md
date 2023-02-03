@@ -1,37 +1,27 @@
-
-# 1.12 암호
-
-- 분류 : 문자열(String)
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 1.12)
+# 문제
+- 플랫폼 : 인프런 알고리즘 문제풀이 입문
+- 번호 : 1.12
+- 제목 : 암호
+- 문자열을 7자씩 끊어서, 2진수로 변환 후, 다시 10진수화 한다. 그리고 이를 아스키 번호에 따라 문자로 다시 바꾼다. 이런식으로, 주어진 암호를
+문자열로 변환하여 출력하기.
 
 ---
 
-## 풀이 : 내 풀이
-```java
-        private static String solution(String line, int n) {
-            StringBuilder mainSb = new StringBuilder();
+# 필요 지식
+- 문자열 처리
+- 투 포인터
 
-            for (int i=0; i<n; i++) {
+---
 
-                StringBuilder subSb = new StringBuilder();
-
-                for (int j=0; j<7; j++) {
-                    int index = 7*i + j;
-                    if (line.charAt(index) == '#') {
-                        subSb.append(1);
-                    } else {
-                        subSb.append(0);
-                    }
-                }
-                int value = Integer.parseInt(subSb.toString(), 2);
-                mainSb.append((char) value);
-            }
-            return mainSb.toString();
-        }
+# 풀이
+```python
+input()
+s = input().rstrip().replace('#', '1').replace('*', '0')
+answer = ''.join(chr(int(s[i:i+7], 2)) for i in range(0, len(s), 7))
+print(answer, end='')
 ```
-- 강사님은 replace 등의 메서드를 사용했는데 이건 시간비용이 좀 드는 메서드들이다.
-- 문자열은 불변객체기 때문에 매번 객체를 생성하는 비용이 발생하고, StringBuilder를 사용하는 것이 시간적으로 유리하다.
-- 각 인덱스별로 `#`은 1로, `*`은 0으로 변환하여 서브 StringBuilder에 저장
-- 서브 StringBuilder에 저장된 문자열을 2진수 파싱한 뒤 char로  형변환하여 메인 StringBuilder에 append
+- replace를 사용하여, '#'을 '1'로, '*'를 '0'으로 변환
+- 7자씩 쪼개서, 7자 문자열을 2진수 문자열로 취급하여 10진수 숫자로 변환하고, 이를 다시 아스키 코드값에 따라 문자열로 변환한다.
+- 출력
 
 ---
