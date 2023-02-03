@@ -1,10 +1,34 @@
-# 1.9 숫자만 추출
-
-- 분류 : 문자열(String)
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 1.9 문제)
+# 문제
+- 플랫폼 : 인프런 알고리즘 문제풀이 입문
+- 번호 : 1.9
+- 제목 : 숫자만 추출
+- 문자와 숫자가 섞여있는 문자열이 주어지면 그 중 숫자만 추출하여 그 순서대로 자연수 만들기
 
 ---
 
+# 필요 지식
+- 문자열 처리
+- 정규 표현식
+
+---
+
+# Python
+
+## 풀이1 : 정규 표현식 사용
+```python
+import re
+
+answer = int(re.sub(r'[^0-9]', '', input()))
+print(answer, end='')
+```
+
+## 풀이2 : 리스트 컴프리헨션 사용
+```python
+answer = int(''.join(ch for ch in input() if ch.isnumeric()))
+print(answer, end='')
+```
+
+# Java
 ## 풀이1 : Character.isDigit, Integer.parseInt 활용
 ```java
     private static int solution(String word) {
