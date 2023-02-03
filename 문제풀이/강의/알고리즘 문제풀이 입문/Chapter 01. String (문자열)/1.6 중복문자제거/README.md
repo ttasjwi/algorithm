@@ -1,15 +1,32 @@
-# 1-6. 중복문자제거
-
-- 분류 : 문자열(String)
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 1-6 문제)
-
----
-
-## 시간복잡도
-- 모든 문자를 순서대로 확인해야하므로 문자의 길이가 N이면 O(N)
+# 문제
+- 플랫폼 : 인프런 알고리즘 문제풀이 입문
+- 번호 : 1.6
+- 제목 : 중복문자제거
+- 문자열의 중복문자는 한번만 나오게 한 문자열 출력(먼저 나온 단어만 살린다.)
 
 ---
 
+# 필요 지식
+- 문자열 처리
+- 해시
+
+---
+
+# Python
+```python
+char_set = set()
+answer = []
+for ch in input():
+    if ch not in char_set:
+        answer.append(ch)
+        char_set.add(ch)
+print(''.join(answer))
+```
+- set을 별도로 만들고, 한번 등장한 단어를 여기에 삽입한다.
+- 한번도 등장하지 않은 단어만 answer에 append 한다.
+- answer를 join해서 출력
+
+# Java
 ## 풀이1 : LinkedHashSet 활용
 ```java
     private static String solution(String word) {
