@@ -1,16 +1,30 @@
-# 1-4. 단어 뒤집기
-
-- 분류 : 문자열(String)
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 1-4 문제)
-
----
-
-## 시간복잡도
-- 단어의 갯수를 N, 단어의 최대 길이를 M이라 할 때 시간복잡도는 O(NM)
+# 문제
+- 플랫폼 : 인프런 알고리즘 문제풀이 입문
+- 번호 : 1.4
+- 제목 : 단어 뒤집기
 
 ---
 
-## 풀이1 : StringBuilder의 reverse 활용
+# 필요 지식
+- 문자열 처리
+
+---
+
+# 풀이
+## Python
+```python
+from sys import stdin
+
+input = stdin.readline
+
+answer = '\n'.join(input().rstrip()[::-1] for _ in range(int(input())))
+print(answer, end='')
+```
+- `문자열[::-1]` 을 통해 뒤집은 문자열 얻기
+- 출력
+
+## Java
+### 풀이1 : StringBuilder의 reverse 활용
 ```java
     public static String solution(String[] words) {
         StringBuilder sb = new StringBuilder();
@@ -26,7 +40,7 @@
 ```
 - StringBuilder의 reverse는 빌더에 저장된 문자열을 뒤집음
 
-## 풀이2 : 직접 뒤집기
+### 풀이2 : 직접 뒤집기
 ```java
     public static String solution(String[] words) {
         StringBuilder sb = new StringBuilder();
