@@ -1,40 +1,34 @@
-
-# 2.03 가위바위보
-
-- 분류 : 배열(Array)
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 2.03)
+# 문제
+- 플랫폼 : 인프런 알고리즘 문제풀이 입문
+- 번호 : 2.03
+- 제목 : 가위바위보
+- 연속해서 가위바위보를 할 때 각 줄에 각 회의 승자를 출력
 
 ---
 
-## 풀이
-```java
-    private static String solution(int[] a, int[] b) {
-        StringBuilder sb = new StringBuilder();
+# 필요 지식
+- 리스트 처리
 
-        for (int i = 0; i < a.length; i++) {
+---
 
-            if (a[i] == b[i]) {
-                // 비길 때
-                sb.append('D').append('\n');
-            } else if (a[i] == 1 && b[i] == 3) {
-                // 가위 보 -> A가 이길 때
-                sb.append('A').append('\n');
-            } else if (a[i] == 2 && b[i] == 1) {
-                // 바위 가위 -> A가 이길 때
-                sb.append('A').append('\n');
-            } else if (a[i] == 3 && b[i] == 2) {
-                // 보 바위 -> A가 이길 때
-                sb.append('A').append('\n');
-            } else {
-                // B가 이길 때
-                sb.append('B').append('\n');
-            }
-        }
-        return sb.toString();
-    }
-
+# 풀이
+```python
+input()
+answer = []
+for a, b in zip(input().split(), input().split()):
+    if a == b:
+        answer.append('D')
+    else:
+        if (a == '1' and b == '3') or (a == '2' and b == '1') or (a == '3' and b == '2'):
+            answer.append('A')
+        else:
+            answer.append('B')
+print('\n'.join(answer), end='')
 ```
-- 단순한 분기 처리
-- 반복문, 조건문 노가다 타이핑
+- zip 사용해서 두 반복자를 엮음
+1. 두 요소가 같으면 비김
+2. 그 외 
+   1) A가 이긴 경우 처리
+   2) else로 나머지는 B가 이긴 경우 처리
 
 ---
