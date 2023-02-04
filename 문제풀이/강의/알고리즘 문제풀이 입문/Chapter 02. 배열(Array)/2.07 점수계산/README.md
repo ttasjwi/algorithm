@@ -1,31 +1,32 @@
-
-# 2.07 점수계산
-
-- 분류 : 배열(Array)
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 2.07)
+# 문제
+- 플랫폼 : 인프런 알고리즘 문제풀이 입문
+- 번호 : 2.07
+- 제목 : 점수계산
+- 여러 개의 OX 문제로 만들어진 시험에서 연속적으로 답을 맞히는 경우에는 매 회마다 1씩 가산점을 추가 부여함. 총점을 구하여라.
 
 ---
 
-## 풀이 : '보너스' 변수 도입
-```java
-    private static int solution(boolean[] isAnswers) {
-        int bonus = 0;
-        int totalScore = 0;
+# 필요 지식
+- 리스트 처리
 
-        for (boolean isAnswer : isAnswers) {
-            if (isAnswer) {
-                bonus ++;
-                totalScore += bonus;
-            } else {
-                bonus = 0;
-            }
-        }
-        return totalScore;
-    }
+---
+
+# 풀이
+```python
+input()
+
+total = 0
+combo = 0
+for ch in input().split():
+    if ch == '1':
+        combo += 1
+        total += combo
+    else:
+        combo = 0
+print(total, end='')
 ```
-- 배열을 순서대로 탐색
-- 정답이 나올 때마다 bonus를 1 증가
-- 누적된 보너스만큼 총점을 합산
-- 오답이 나오면 bonus를 0으로 초기화
+- combo : 가산점
+- total : 총점
+- 정답이면 가산점 +1 후 추가, 틀리면 가산점을 0으로 초기화
 
 ---
