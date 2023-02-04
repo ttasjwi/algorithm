@@ -1,40 +1,26 @@
-
-# 2.01 큰 수 출력하기
-
-- 분류 : 배열(Array)
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 2.01)
+# 문제
+- 플랫폼 : 인프런 알고리즘 문제풀이 입문
+- 번호 : 2.01
+- 제목 : 큰 수 출력하기
+- 자신의 바로 앞 수보다 큰 수만 한 줄로 출력
 
 ---
 
-## 풀이
+# 필요 지식
+- 리스트 처리
 
-### 입출력
-```java
-    public static void main(String[] args) throws IOException {
-        int N = readInt();
-        int[] numbers = new int[N+1];
+---
 
-        for (int i=1; i<=N; i++) {
-            numbers[i] = readInt();
-        }
-        String answer = solution(numbers);
-        System.out.print(answer);
-    }
+# 풀이
+```python
+input()
+nums = list(map(int, input().split()))
+answer = [str(nums[0])]
+for i in range(1, len(nums)):
+    if nums[i - 1] < nums[i]:
+        answer.append(str(nums[i]))
+print(' '.join(answer), end='')
 ```
-- 편의 상 배열을 생성할 때 숫자 갯수보다 한 칸 더 많이 생성한다.
-
-### 로직
-```java
-    private static String solution(int[] numbers) {
-        StringBuilder sb = new StringBuilder();
-        for (int i=1; i<numbers.length; i++) {
-            if (numbers[i-1] < numbers[i]) {
-                sb.append(numbers[i]).append(' ');
-            }
-        }
-        return sb.toString();
-    }
-```
-- 반복 돌려서 각 인덱스마다 이전 인덱스와 비교
+- 이전 인덱스와 비교하면서 더 크면 append
 
 ---
