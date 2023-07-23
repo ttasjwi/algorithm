@@ -42,3 +42,19 @@ public class Main {
 - 그리고 이걸 출력한다.
 
 ---
+
+# Kotlin
+```kotlin
+import java.util.StringTokenizer
+
+fun main() = with(System.`in`.bufferedReader()){
+    val st = StringTokenizer(readLine())
+    print(st.nextToken().toInt() + st.nextToken().toInt())
+}
+```
+- with 함수를 통해 수신객체로 System.`in`.bufferedReader 을 지정
+- 입력 받아서 StringTokenizer를 통해 토큰화
+- toInt를 통해 변환 후 합산
+- 출력
+
+---
