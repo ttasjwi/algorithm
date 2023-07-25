@@ -8,13 +8,23 @@
 
 ---
 
-# 필요 알고리즘
-- java : 반복문
-- python : 리스트 함수
+# 필요 지식
+- 없음
 
 ---
 
-# Python
+# 풀이
+## Kotlin
+```kotlin
+class Solution {
+    fun solution(array: IntArray, n: Int): Int {
+        return array.count { it == n }
+    }
+}
+```
+
+
+## Python
 ```python
 from typing import List
 
@@ -27,7 +37,7 @@ def solution(array: List[int], n: int):
 
 ---
 
-# Java
+## Java
 ## 풀이1 : 반복문
 ```java
     public int solution(int[] array, int n) {
