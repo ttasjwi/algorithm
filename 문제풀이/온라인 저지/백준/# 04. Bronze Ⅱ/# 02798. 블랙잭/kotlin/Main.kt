@@ -1,22 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 02798
-- 제목 : 블랙잭
-- 난이도 : Bronze 2
-- N장의 카드에 써져 있는 숫자가 주어졌을 때, M을 넘지 않으면서 M에 최대한 가까운 카드 3장의 합을 구해 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/2798" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 브루트 포스
-
----
-
-# 풀이
-
-## Kotlin
-```kotlin
 fun main() {
     val n = readInt()
     val m = readInt()
@@ -45,22 +26,15 @@ private fun solution(numbers: IntArray, n: Int, m: Int): Int {
     }
     return max // 최댓값 반환
 }
-```
-- 매번 더하면서 m이상인지 확인하고 반복을 스킵할 수 있으면 스킵하도록 함
-- 합이 sum 이면 바로 반환하고 매번 최대합을 갱신함
 
-## 입출력
-```kotlin
 private fun readInt(): Int {
     var value = 0
     var input: Int
     while (true) {
-        input = System.`in`.read()
+        input = System.`in`.read() // 한글자 읽기
         when (input) {
-            10, 32 -> return value // 공백이나 개행자
-            else -> value = value * 10 + (input - 48)
+            10, 32 -> return value // 공백이나 개행자면 입력을 멈추고 반환
+            else -> value = value * 10 + (input - 48) // 기존값에 10을 곱하고 입력값을 숫자로 변환해서 합산
         }
     }
 }
-```
-- 빈번하게 숫자를 입력받아야하는데, readInt 메서드를 따로 빼서 작업했다.
