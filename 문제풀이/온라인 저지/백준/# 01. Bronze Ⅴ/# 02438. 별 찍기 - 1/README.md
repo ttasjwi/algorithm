@@ -8,17 +8,36 @@
 
 ---
 
-# 필요 알고리즘
+# 필요 지식
 - 반복문
 
 ---
 
 # 풀이
+## Python
 ```python
 n = int(input())
 
 answer = '\n'.join('*' * (i+1) for i in range(n))
 print(answer)
+```
+
+## Kotlin
+```kotlin
+import java.util.StringTokenizer
+
+fun main() = with(System.`in`.bufferedReader()) {
+
+    val st = StringTokenizer(readln())
+    val sb = StringBuilder()
+    for (i in 1..st.nextToken().toInt()) {
+        repeat(i) {
+            sb.append('*')
+        }
+        sb.append('\n')
+    }
+    print(sb)
+}
 ```
 
 ---
