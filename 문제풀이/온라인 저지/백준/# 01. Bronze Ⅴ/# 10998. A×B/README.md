@@ -8,12 +8,24 @@
 
 ---
 
-# 필요 알고리즘
+# 필요 지식
 - 없음
 
 ---
 
 # 풀이
+
+## Kotlin
+```kotlin
+fun main() {
+    val a = System.`in`.read() - 48
+    System.`in`.read()
+    val b = System.`in`.read() - 48
+    print(a*b)
+}
+```
+
+## Python
 ```python
 a, b = map(int, input().split())
 answer = a * b
