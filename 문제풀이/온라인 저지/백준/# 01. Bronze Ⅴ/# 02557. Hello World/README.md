@@ -8,12 +8,20 @@
 
 ---
 
-# 필요 알고리즘
+# 필요 지식
 - 없음
 
 ---
 
 # 풀이
+## Kotlin
+```kotlin
+fun main() {
+    print("Hello World!")
+}
+```
+
+## Python
 ```python
 print('Hello World!')
 
