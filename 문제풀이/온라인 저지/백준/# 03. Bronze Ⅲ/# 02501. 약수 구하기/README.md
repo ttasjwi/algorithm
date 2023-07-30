@@ -9,27 +9,34 @@
 ---
 
 # 필요 지식
-- 수학
+- 없음
 
 ---
 
 # 풀이
-```python
-import math
+## Kotlin
+```kotlin
+fun main() {
+    val n = readInt()
+    val k = readInt()
 
-n, k = map(int, input().split())
+    var result = 0
+    var cnt = 0
 
-aliquots = []
-
-for i in range(1, int(math.sqrt(n)) + 1):
-    if n % i == 0:
-        aliquots.append(i)
-        if i * i != n:
-            aliquots.append(n // i)
-aliquots.sort()
-print(0 if k > len(aliquots) else aliquots[k - 1])
+    for (i in 1..n) {
+        if (n % i == 0) {
+            cnt ++
+            if (cnt == k) {
+                result = i
+                break
+            }
+        }
+    }
+    print(result)
+}
 ```
-- 약수를 구할 떄는 거듭제곱근까지만 따져주면 된다. (예: 2가 6의 약수이면 6을 2로 나눈 3도 2의 약수이다.)
-- 순서대로 약수를 구하고 수집하여, 정렬한뒤 결과를 출력하면 된다
+- result에 0을 담는다.
+- 1부터 n까지 순서대로 탐색하면서, k번째 약수를 result에 담은 뒤 반복을 탈출한다.
+- result를 출력한다
 
 ---
