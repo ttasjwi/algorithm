@@ -14,12 +14,14 @@
 ---
 
 # 풀이
-```python
-print(input(), 1, sep='\n')
+```kotlin
+fun main() {
+    val sb = StringBuilder()
+    sb.append(readInt()).append('\n').append('1')
+    print(sb)
+}
 ```
 - 주어진 문제상황은 1부터 n까지 반복해서 `#코드1`을 반복수행하는 상황이다.
 - 수행 횟수는 n회이고, n에 비례하여 알고리즘이 수행되므로 시간 복잡도는 `O(n)`이다. 이 경우 최고차항의 차수는 1이다.
 
 ---
-
-
