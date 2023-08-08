@@ -16,13 +16,31 @@
 
 # 풀이
 ```python
-import sys
+fun main() {
+    System.`in`.read(B,0,S)
+    var n = i()
+    var m = i()
+    val s = HashSet<String>()
+    while (n-->0) s.add(s())
+    var c = 0
+    while (m -->0) if (s() in s) c++
+    print(c)
+}
 
-src = sys.stdin
-
-n, m = map(int, src.readline().split())
-s = set(src.readline().rstrip() for i in range(n))
-print(len([1 for line in src.read().splitlines() if line in s]))
+const val S=10020012
+private val B=ByteArray(S)
+private var p=0
+fun i():Int{
+    var v=0
+    var c=B[p++]
+    do v=v*10+c-48 while(B[p++].also{c=it}>47)
+    return v
+}
+fun s():String{
+    val f=p; var l=0
+    while(B[p++]>64)l++
+    return String(B,f,l)
+}
 ```
 - n개 라인을 읽고 set에 저장(해시 사용)
 - 다음 m개 라인의 각 요소를 set에서 존재 여부를 확인 후, 존재하는 것에 대해서만 카운팅
