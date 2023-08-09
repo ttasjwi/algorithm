@@ -27,7 +27,6 @@ private fun readInt(): Int {
 }
 
 
-// System.`in`.read(B,0,S) 로 읽기
 const val S=10500007
 private val B=ByteArray(S)
 private var p=0
@@ -37,10 +36,15 @@ fun i():Int{
     do v=v*10+c-48 while(B[p++].also{c=it}>47)
     return v
 }
-fun s():String{
-    val f=p; var l=0
-    while(B[p++]>64)l++
-    return String(B,f,l)
+private val rsb = StringBuilder()
+fun s(): String {
+    var c = B[p++]
+    do {
+        rsb.append(c.toChar())
+    } while (B[p++].also { c = it } > 47)
+    val s = rsb.toString()
+    rsb.setLength(0)
+    return s
 }
 
 fun main()=System.out.bufferedWriter().run{
