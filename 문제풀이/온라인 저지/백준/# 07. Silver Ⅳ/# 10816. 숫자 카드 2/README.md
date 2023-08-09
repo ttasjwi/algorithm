@@ -8,47 +8,28 @@
 
 ---
 
-# 필요 알고리즘
-- 해시
+# 필요 지식
+- 없음
 
 ---
 
 # 풀이
-
-## 풀이1
-```python
-import io, os, sys
-from collections import Counter
-
-input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
-print = sys.stdout.write
-
-input()
-c = Counter(input().decode().split())
-input()
-answer = ' '.join(str(c[key]) for key in input().decode().split())
-print(answer)
+```kotlin
+fun main() {
+    val counter = IntArray(20_000_001)
+    var n = i()
+    while (n-- > 0) {
+        counter[i() + 10_000_000]++
+    }
+    var m = i()
+    val sb = StringBuilder()
+    while (m-- > 0) {
+        sb.append(counter[i() + 10_000_000]).append(' ')
+    }
+    print(sb)
+}
 ```
 - 카운터로 카운팅
 - 이후 들어온 라인의 각 요소를 카운터에서 찾아 그 숫자를 순서대로 출력
 
-## 풀이2
-```python
-import io, os, sys
-from collections import Counter
-from operator import itemgetter
-
-input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
-print = sys.stdout.write
-
-input()
-c = Counter(input().decode().split())
-input()
-answer = ' '.join(map(str, itemgetter(*input().decode().split())(c)))
-print(answer)
-```
-- itemgetter 생성시, 인자로 찾는 대상들을 순서대로 지정해 입력
-- 해당 itemgetter를 f라 할 때, f(...)은 위에서 지정한 인자들을 순서대로 ...에서 찾아 튜플의 형태로 반환한다.
-
 ---
-
