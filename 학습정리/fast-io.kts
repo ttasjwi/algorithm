@@ -52,8 +52,8 @@ private fun i(): Int {
 private fun i(): Int {
     var v = 0
     var c = r()
-    var n = c.toInt() == 45
-    c = if (n) c else r()
+    val n = c.toInt() == 45
+    c = if (n) r() else c
     do { v = v * 10 + c - 48 } while (r().also { c = it } > 47)
     return if (n) -v else v
 }
