@@ -8,25 +8,39 @@
 
 ---
 
-# 필요 알고리즘
+# 필요 지식
 - 해시
 - 정렬
 
 ---
 
 # 풀이
-```python
-import sys
-
-lines = sys.stdin.buffer.read().decode().splitlines()
-
-n, m = map(int, lines[0].split())
-c = sorted(set(lines[1:n + 1]) & set(lines[n + 1:]))
-print(len(c))
-print('\n'.join(c))
+```kotling
+fun main() {
+    var n = i()
+    var m = i()
+    val list = mutableListOf<String>()
+    val set = HashSet<String>()
+    var p: String
+    while (n-- > 0) set.add(s())
+    while (m-- > 0) {
+        p = s()
+        if (p in set) {
+            list.add(p)
+        }
+    }
+    list.sort()
+    val sb = StringBuilder()
+    sb.append(list.size).append('\n')
+    for (e in list) {
+        sb.append(e).append('\n')
+    }
+    print(sb)
+}
 ```
-- 파이썬 set의 교집합 연산으로 겹치는 것들을 구함
-- 정렬된 리스트로 변환
+- set에 듣도 못 한 사람 저장
+- 그 다음 입력되는 보도 못 한 사람 중에 듣도 못한 사람은 리스트에 추가(앞에서 해싱한 set 활용)
+- 리스트 정렬
 - 길이 구하여 출력
 - 요소들 순서대로 출력
 
