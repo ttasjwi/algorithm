@@ -8,23 +8,33 @@
 
 ---
 
-# 필요 알고리즘
+# 필요 지식
 - 해시
 
 ---
 
 # 풀이
-```python
-import sys
-
-lines = sys.stdin.buffer.read().decode().splitlines()
-
-n, m = map(int, lines[0].split())
-dic = {word: str(idx + 1) for idx, word in enumerate(lines[1:n + 1])}
-answer = '\n'.join(lines[int(line)] if line.isdigit() else dic[line] for line in lines[1 + n:])
-print(answer)
+```kotlin
+fun main() {
+    System.`in`.read(B, 0, S)
+    val n = i()
+    var m = i()
+    val arr = arrayOfNulls<String>(n + 1)
+    val map = HashMap<String, Int>()
+    var word: String
+    for (i in 1..n) {
+        word = s()
+        arr[i] = word
+        map[word] = i
+    }
+    while (m-- > 0) {
+        word = s()
+        wsb.append(if (word[0].isDigit()) arr[word.toInt()] else map[word]).append('\n')
+    }
+    print(wsb)
+}
 ```
-- 라인들을 입력받아서, 배열과 딕셔너리에 저장
-- 입력이 숫자가 들어오면 배열의 인덱스에 위치한 포켓몬을, 문자열이 들어오면 딕셔너리에서 번호를 꺼낸다.
+- 라인들을 입력받아서, 배열과 맵에 저장
+- 입력이 숫자가 들어오면 배열의 인덱스에 위치한 포켓몬을, 문자열이 들어오면 맵에서 번호를 꺼낸다.
 
 ---
