@@ -32,15 +32,6 @@ private val b = ByteArray(S)
 private var c = 0
 private var l = 0
 private val rsb = StringBuilder()
-private val wsb = StringBuilder()
-
-private fun r(): Byte {
-    if (c == l) {
-        l = iS.read(b, 0.also { c = it }, S)
-        if (l == -1) b[0] = -1
-    }
-    return b[c++]
-}
 
 private fun i(): Int {
     var v = 0
@@ -58,11 +49,18 @@ private fun i(): Int {
     return if (n) -v else v
 }
 
-
 private fun s(): String {
     var c = r()
     do rsb.append(c.toChar()) while (r().also { c = it } > 32)
     val s = rsb.toString()
     rsb.setLength(0)
     return s
+}
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
 }
