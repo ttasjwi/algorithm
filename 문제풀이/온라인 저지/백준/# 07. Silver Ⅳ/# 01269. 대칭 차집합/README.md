@@ -9,30 +9,32 @@
 ---
 
 # 필요 지식
-- 수학?
+- 해시
 
 ---
 
 # 풀이
+```kotlin
+fun main() {
+    var na = i()
+    var nb = i()
 
-## 풀이1: set 자료형 활용
-```python
-input()
-
-a = set(map(int, input().split()))
-b = set(map(int, input().split()))
-print(len((a | b) - (a & b)))
+    val set = HashSet<Int>()
+    var cnt = 0
+    while (na --> 0) {
+        set.add(i())
+        cnt ++
+    }
+    var tmp: Int
+    while (nb --> 0) {
+        tmp = i()
+        if (set.contains(tmp)) cnt -- else cnt ++
+    }
+    print(cnt)
+}
 ```
-- 각각의 set을 구하고 조건 그대로 합집합 후 교집합을 제한다.
-
-## 풀이2: 원소의 갯수
-```python
-na, nb = map(int, input().split())
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
-print(2 * len(set(a+b)) - na - nb)
-```
-- 대칭차집합 = (합집합) - (교집합) 에서 수식을 유도해보면
-    - 대칭차집합 = 2 * (합집합) - a - b
+- 첫번째 입력 원소들은 HashSet에 삽입(카운팅도 함께 함)
+- 두번째 입력 원소들은 set에 이미 있을 경우 cnt 감소, set에 없을 경우 cnt 증가
+- 최종적으로 cnt를 반환하면 됨
 
 ---
