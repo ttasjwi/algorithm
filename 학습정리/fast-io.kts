@@ -1,7 +1,8 @@
 // 음수 포함o 정수 입력
-private fun readInt(): Int {
-    var value = 0
-    var negative = false
+private fun i(): Int {
+    var i = 0
+    var c = System.`in`.read()
+    var n = if (c == 45)
     var input: Int
     while (true) {
         input = System.`in`.read()
@@ -14,16 +15,11 @@ private fun readInt(): Int {
 }
 
 // 음수 포함x 정수 입력
-private fun readInt(): Int {
-    var value = 0
-    var input: Int
-    while (true) {
-        input = System.`in`.read()
-        when (input) {
-            10, 32 -> return value
-            else -> value = value * 10 + (input - 48)
-        }
-    }
+private fun i(): Int {
+    var v = 0
+    var c = System.`in`.read()
+    do v = v * 10 + (c - 48) while(System.`in`.read().also { c = it } > 47)
+    return v
 }
 
 private const val S = 65536
