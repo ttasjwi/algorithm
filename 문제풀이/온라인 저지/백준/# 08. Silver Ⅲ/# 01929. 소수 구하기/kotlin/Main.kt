@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 01929
-- 제목 : 소수 구하기
-- 난이도 : Silver 3
-- m 이상 n 이하 소수를 모두 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/1929" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 에라토스테네스의 체
-
----
-
-# 풀이
-```kotlin
 import java.lang.StringBuilder
 import kotlin.math.sqrt
 
@@ -41,7 +24,10 @@ fun main() {
     }
     print(sb)
 }
-```
-- n 이하의 소수를 모두 구하기(에라토스테네스의 체)
-- m 이상 n 이하의 소수를 하나씩 출력
----
+
+private fun i(): Int {
+    var v = 0
+    var c = System.`in`.read()
+    do v = v * 10 + (c - 48) while(System.`in`.read().also { c = it } > 47)
+    return v
+}
