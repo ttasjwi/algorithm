@@ -8,32 +8,31 @@
 
 ---
 
-# 필요 알고리즘
+# 필요 지식
 - 스택
 
 ---
 
 # 풀이
-```python
-import sys
-
-
-def main():
-    input = sys.stdin.readline
-
-    stack = []
-    for _ in range(int(input())):
-        current = int(input())
-        if current == 0:
-            stack.pop()
-        else:
-            stack.append(current)
-    print(sum(stack), end='')
-
-
-if __name__ == '__main__':
-    main()
+```kotlin
+fun main() {
+    var k = i()
+    var input: Int
+    val stack = IntArray(k)
+    var p = 0
+    var sum = 0
+    while (k-- > 0) {
+        input = i()
+        if (input == 0) {
+            sum -= stack[--p]
+        } else {
+            sum += input
+            stack[p++] = input
+        }
+    }
+    print(sum)
+}
 ```
-- 스택을 사용하면 간단한 문제
+- 스택을 배열로 구현하고, 삽입/제거가 일어날 때 sum도 함께 계산
 
 ---
