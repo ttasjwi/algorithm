@@ -8,58 +8,39 @@
 
 ---
 
-# 필요 알고리즘
+# 필요 지식
 - 스택
 
 ---
 
 # 풀이
-
-## 풀이1 : Stack 사용
-```python
-import io, os, sys
-
-print = sys.stdout.write
-
-
-def solution(line):
-    stack = []
-
-    for ch in line.rstrip():
-        if ch == '(':
-            stack.append(ch)
-        elif not stack:
-            return 'NO'
-        else:
-            stack.pop()
-
-    return 'NO' if stack else 'YES'
-
-
-answer = '\n'.join([solution(line) for line in sys.stdin.readlines()[1:]])
-print(answer)
+```kotlin
+fun main() {
+    var t = i()
+    var p: Int
+    val stack = CharArray(50)
+    val sb = StringBuilder()
+    loop@while (t-- > 0) {
+        s()
+        p = 0
+        for (ch in rsb) {
+            if (ch == '(') {
+                stack[p++] = ch
+            } else if (p == 0) {
+                sb.append("NO\n")
+                continue@loop
+            } else {
+                p--
+            }
+        }
+        sb.append(if (p ==0) "YES\n" else "NO\n")
+    }
+    print(sb)
+}
 ```
-- 스택에 여는 괄호만 담고, 닫는 괄호가 들어올 때 꺼내는 방식
-- 스택에 아무 것도 없는데 닫는 괄호가 들어오면 괄호가 맞지 않으므로 바로 NO 반환
-- 끝까지 반복했는데 스택에 요소가 남아있으면 NO 반환, 있으면 YES 반환
-
-## 풀이2 : 반복문 + replace
-```python
-import sys
-
-print = sys.stdout.write
-
-
-def solution(line):
-    while '()' in line:
-        line = line.replace('()', '')
-    return 'NO' if line else 'YES'
-
-
-answer = '\n'.join([solution(line.rstrip()) for line in sys.stdin.readlines()[1:]])
-print(answer)
-```
-- 반복을 돌리면서 `()`을 `''`으로 변경
-- 최종적으로 문자열이 빈 문자열이면 괄호가 맞고, 아니면 괄호가 맞지 않다.
+- 배열을 이용해 스택 구현
+- 열린 괄호는 무조건 삽입한다.
+- 닫힌 괄호가 들어오면 기존의 열린 괄호를 하나 제거한다. 이 때 스택이 비어있다면 NO
+- 최종적으로 스택이 비어있으면 NO, 비어있지 않으면 YES
 
 ---
