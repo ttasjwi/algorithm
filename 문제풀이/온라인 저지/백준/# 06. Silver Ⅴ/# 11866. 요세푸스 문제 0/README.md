@@ -8,48 +8,32 @@
 
 ---
 
-# 필요 알고리즘
-- 큐
+# 필요 지식
+- 연결 리스트
 
 ---
 
 # 풀이
-
-## 풀이1
-```python
-n, k = map(int, input().split())
-q = [i for i in range(1, n+1)]
-result = []
-idx = 0
-while q:
-    idx += k - 1
-    if idx >= len(q):
-        idx %= len(q)
-    result.append(q.pop(idx))
-
-print(str(result).replace('[', '<').replace(']', '>'))
+```kotlin
+fun main() {
+    val n = i()
+    val k = i()
+    val l = LinkedList<Int>()
+    for (i in 1..n) l.add(i)
+    var idx = 0
+    val sb = StringBuilder()
+    sb.append('<')
+    while (!l.isEmpty()) {
+        idx = (idx - 1 + k + l.size) % l.size
+        sb.append(l.removeAt(idx)).append(',').append(' ')
+    }
+    sb.deleteRange(sb.length - 2, sb.length)
+    sb.append('>')
+    print(sb)
+}
 ```
-- k-1번 인덱스를 이동하고(길이보다 길면 len으로 나눈 나머지로 삼는다.) 해당 위치의 요소를 제거한다.
-- 큐가 빌 때까지 반복
-
----
-
-## 풀이2
-```python
-import sys
-
-print = sys.stdout.write
-
-n, k = map(int, input().split())
-q = [i for i in range(1, n+1)]
-result = []
-while q:
-    for i in range(k-1):
-        q.append(q.pop(0))
-    result.append(q.pop(0))
-
-print(str(result).replace('[', '<').replace(']', '>'))
-```
-- 정말 문제에서 시킨대로 순서대로 계속 뽑는다.
+- k번 오른쪽으로 이동 후, 해당 요소를 삭제해야한다.
+- 배열 자료구조를 사용할 경우 중간 삭제 비용이 비싸다.
+- 연결 리스트 자료 구조를 사용하면 삭제가 빠르게 수행된다.
 
 ---
