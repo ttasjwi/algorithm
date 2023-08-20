@@ -14,8 +14,17 @@
 ---
 
 # 풀이
-```python
-print(2 ** int(input()))
+```kotlin
+fun main() {
+    print(Math.pow(2.0, i().toDouble()).toInt())
+}
+
+private fun i(): Int {
+    var v = 0
+    var c = System.`in`.read()
+    do v = v * 10 + (c - 48) while(System.`in`.read().also { c = it } > 47)
+    return v
+}
 ```
 - 다음 층에 갈 때마다 경우의 수가 2배씩 증가한다.
 - 따라서, 2의 거듭제곱 꼴로 증가한다.
