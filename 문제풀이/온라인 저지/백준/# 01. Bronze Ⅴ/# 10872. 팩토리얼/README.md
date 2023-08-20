@@ -8,18 +8,25 @@
 
 ---
 
-# 필요 알고리즘
+# 필요 지식
 - 없음
 
 ---
 
 # 풀이
-```python
-n = int(input())
-answer = 1
-for i in range(2, n+1):
-    answer *= i
-print(answer, end='')
+```kotlin
+fun main() {
+    var k = 1
+    for (i in 2..i()) k *= i
+    print(k)
+}
+
+private fun i(): Int {
+    var v = 0
+    var c = System.`in`.read()
+    do v = v * 10 + (c - 48) while (System.`in`.read().also { c = it } > 47)
+    return v
+}
 ```
 
 ---
