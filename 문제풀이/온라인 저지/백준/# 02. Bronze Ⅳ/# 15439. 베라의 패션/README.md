@@ -15,8 +15,12 @@
 
 # 풀이
 ```python
-n = int(input())
-print(n * (n - 1))
+fun main() {
+    var v = 0
+    var c = System.`in`.read()
+    do v = v * 10 + (c - 48) while(System.`in`.read().also { c = it } > 47)
+    print(v * (v-1))
+}
 ```
 - 단순히 경우의 수를 구하는 문제이다.
 - 옷을 선택하는 가짓수는 n가지, 그 각각에 대하여 다른 색상의 옷을 선택하는 가짓수는 (n-1)
