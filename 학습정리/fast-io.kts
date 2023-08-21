@@ -1,17 +1,11 @@
 // 음수 포함o 정수 입력
 private fun i(): Int {
-    var i = 0
+    var v = 0
     var c = System.`in`.read()
-    var n = if (c == 45)
-    var input: Int
-    while (true) {
-        input = System.`in`.read()
-        when (input) {
-            10, 32 -> return if (negative) -value else value
-            45 -> negative = true
-            else -> value = value * 10 + (input - 48)
-        }
-    }
+    val n = c == 45
+    c = if (n) System.`in`.read() else c
+    do { v = v * 10 + c - 48 } while (System.`in`.read().also { c = it } > 47)
+    return if (n) -v else v
 }
 
 // 음수 포함x 정수 입력
