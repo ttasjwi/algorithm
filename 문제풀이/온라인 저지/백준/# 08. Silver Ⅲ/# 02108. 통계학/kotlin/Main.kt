@@ -1,22 +1,5 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 02108
-- 제목 : 통계학
-- 난이도 : Silver 3
-- 주어진 숫자들의 산술평균, 중앙값, 최빈값, 범위 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/2108" target="_blank">링크</a>
+import kotlin.math.roundToInt
 
----
-
-# 필요 알고리즘
-- 수학
-- 구현
-- 정렬
-
----
-
-# 풀이
-```kotlin
 fun main() {
         val n = i()
         val counter = IntArray(8001)
@@ -62,13 +45,25 @@ fun main() {
             .append(max-min)
         print(sb)
     }
-```
-- 입력 유효범위인 -4000부터 4000까지 등장하는 족족 배열에 카운팅한다.
-  - 합 누적 -> 평균을 구할 수 있다.
-  - 최대 최소 갱신 -> 범위를 구할 수 있다.
-- 다시 최소범위부터 최대범위까지 배열을 순회하며 중앙값, 최빈값을 탐색한다.
-  - 최빈값의 경우, 동일한 값이 두번째 나타낼 경우 해당값을 반환하도록 행야하므로 mode_duplicated 변수를 사용하여 재등장한 변수를 처리하도록
-  하였다.
-- 이렇게 모인 결과물들을 출력한다.
+    private const val S = 65536
+    private val iS = java.io.DataInputStream(System.`in`)
+    private val b = ByteArray(S)
+    private var c = 0
+    private var l = 0
 
----
+    private fun i(): Int {
+        var v = 0
+        var c = r()
+        val n = c.toInt() == 45
+        c = if (n) r() else c
+        do { v = v * 10 + c - 48 } while (r().also { c = it } > 47)
+        return if (n) -v else v
+    }
+
+    private fun r(): Byte {
+        if (c == l) {
+            l = iS.read(b, 0.also { c = it }, S)
+            if (l == -1) b[0] = -1
+        }
+        return b[c++]
+    }
