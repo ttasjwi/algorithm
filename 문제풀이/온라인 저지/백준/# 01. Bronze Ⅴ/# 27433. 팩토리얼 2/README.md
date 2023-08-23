@@ -15,20 +15,25 @@
 
 # 풀이
 
-## 풀이1 : math.factorial
-```python
-import math
-
-print(math.factorial(int(input())))
+## 풀이1: 반복문
+```kotlin
+fun main() {
+    var a = 1L
+    for (i in 2..i()) a *= i
+    print(a)
+}
 ```
 
-## 풀이2: 직접 팩토리얼 구하기
-```python
-answer= 1
-for i in range(1, int(input()) + 1):
-    answer *= i
-print(answer)
+## 풀이2: 재귀
+```kotlin
+fun main() {
+    print(f(i()))
+}
+
+fun f(i: Int) : Long {
+    return if (i == 0 || i == 1) 1L else i * f(i-1)
+}
 ```
-- 직접 팩토리얼 값을 구한다.
+- 풀이1보다는 약간 느리다
 
 ---
