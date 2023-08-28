@@ -13,13 +13,16 @@
 
 ---
 # 풀이
-```python
-n = int(input())
-
-first, second = 1, 1
-for i in range(3, n + 1):
-    first, second = second, first + second
-print(second, n-2)
+```kotlin
+fun main() {
+    val n = i()
+    var a = 1
+    var b = 1
+    for (i in 3..n) {
+        b = (a+b).also { a = b }
+    }
+    print("$b ${n-2}")
+}
 ```
 - 재귀함수를 호출하는 방식에서, 재귀 함수를 fib(n)이라 하면
   - n>=3 일 때 fib(n)에서 코드1을 호출하는 횟수는 fib(n-1)에서 코드1을 호출하는 횟수와 fib(n-2)에서 코드1을 호출하는 횟수의 합과 같다.
