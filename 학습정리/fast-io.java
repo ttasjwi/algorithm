@@ -74,7 +74,23 @@ public class Main {
         return v;
     }
 
+    private static long i() throws java.io.IOException {
+        long v = 0;
+        int c = r();
+        do v = v * 10 + c - 48; while ((c = r()) > 47);
+        return v;
+    }
+
     private static int i() throws java.io.IOException {
+        int v = 0;
+        int c = r();
+        boolean n = c == 45;
+        if (n) c = r();
+        do v = v * 10 + c - 48; while ((c = r()) > 47);
+        return n ? -v : v;
+    }
+
+    private static long i() throws java.io.IOException {
         int v = 0;
         int c = r();
         boolean n = c == 45;
