@@ -8,28 +8,27 @@
 
 ---
 
-# 필요 알고리즘
+# 필요 지식
 - 그리디 알고리즘
 
 ---
 
 # 풀이
-```python
-import sys
-
-input = sys.stdin.readline
-print = sys.stdout.write
-
-n, k = map(int, input().split())
-numbers = [int(input()) for _ in range(n)]
-
-count = 0
-for i in range(n - 1, -1, -1):
-    current, k = divmod(k, numbers[i])
-    count += current
-    if k == 0:
-        break
-print(str(count))
+```kotlin
+fun main() {
+    val n = i()
+    var k = i()
+    val units = IntArray(n)
+    for (i in 0..n-1) {
+        units[n-1-i] = i()
+    }
+    var answer = 0
+    for (unit in units) {
+        if (k == 0) break
+        k = (k%unit).also { answer += k/unit }
+    }
+    print(answer)
+}
 ```
 - 동전의 큰 단위가 각각 이전 작은 단위의 배수이므로, 가능한 큰 단위의 동전으로 교환할 수록 동전을 적게 사용할 수 있다.
 - 큰 동전 단위부터 순서대로 환전해 나간다.
