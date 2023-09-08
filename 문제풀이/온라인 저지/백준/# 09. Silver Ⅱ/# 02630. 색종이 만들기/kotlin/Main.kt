@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 02630
-- 제목 : 색종이 만들기
-- 난이도 : Silver 2
-- 잘라진 햐얀색 색종이, 파란색 색종이의 개수를 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/2630" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 분할 정복
-
----
-
-# 풀이
-```kotlin
 fun main() {
     val n = i()
     val board = Array(n) { BooleanArray(n) }
@@ -45,7 +28,29 @@ fun main() {
     sb.append(wh).append('\n').append(bl)
     print(sb)
 }
-```
-- 순서대로 순회하면서 첫번째에 위치한 값과 일치하지 않으면 다시 색종이를 사분할하여 카운팅
 
----
+
+private const val S = 65536
+private val iS = java.io.DataInputStream(System.`in`)
+private val b = ByteArray(S)
+private var c = 0
+private var l = 0
+
+private fun i(): Int {
+    var v = 0
+    var c = r()
+    do v = v * 10 + c - 48 while (r().also { c = it } > 47)
+    return v
+}
+
+private fun b(): Boolean {
+    return (r() >= 49).also { r(); }
+}
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
+}
