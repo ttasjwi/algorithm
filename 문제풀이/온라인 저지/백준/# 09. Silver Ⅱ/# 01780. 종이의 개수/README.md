@@ -8,56 +8,61 @@
 
 ---
 
-# 필요 알고리즘
-- 분할정복 : 큰 문제를 작은 문제로 나눠서 풀기
+# 필요 지식
+- 분할 정복
 
 ---
 
 # 풀이
-```python
-import io, os, sys
-
-n = 0
-matrix = None
-counter = [0, 0, 0]
-
-
-def main():
-    input_args()
-    search(0, 0, n)
-    answer = '\n'.join(map(str, counter))
-    sys.stdout.write(answer)
-
-
-def input_args():
-    global n, matrix
-    lines = io.BytesIO(os.read(0, os.fstat(0).st_size)).read().decode().rstrip().split('\n')
-    n, matrix = int(lines[0]), [list(map(int, line.split())) for line in lines[1:]]
-
-
-def search(r, c, l):
-    number = matrix[r][c]
-
-    for i in range(r, r + l):
-        for j in range(c, c + l):
-            if matrix[i][j] != number:
-                if l == 3:
-                    for a in range(r, r + l):
-                        for b in range(c, c + l):
-                            counter[matrix[a][b] + 1] += 1
+```kotlin
+fun main() {
+    val n = i()
+    val board = Array(n) { IntArray(n) }
+    for (i in 0 until n) {
+        for (j in 0 until n) {
+            board[i][j] = i()
+        }
+    }
+    var m = 0
+    var z = 0
+    var p = 0
+    fun div(sr: Int, sc: Int, len: Int) {
+        for (r in sr until sr + len) {
+            for (c in sc until sc + len) {
+                if (board[r][c] != board[sr][sc]) {
+                    val nLen = len/3
+                    if (nLen == 1) {
+                        for (i in 0 until 3) {
+                            for (j in 0 until 3) {
+                                when (board[sr+i][sc+j]) {
+                                    -1 -> m++
+                                    0 -> z++
+                                    1 -> p++
+                                }
+                            }
+                        }
+                        return
+                    }
+                    for (i in 0 until 3) {
+                        for (j in 0 until 3) {
+                            div(sr+nLen*i, sc+nLen*j, nLen)
+                        }
+                    }
                     return
-                sl = l//3
-                for a in range(r, r + l, sl):
-                    for b in range(c, c + l, sl):
-                        search(a, b, sl)
-                return
-
-    counter[number + 1] += 1
-    return
-
-
-if __name__ == '__main__':
-    main()
+                }
+            }
+        }
+        when (board[sr][sc]) {
+            -1 -> m++
+            0 -> z++
+            1 -> p++
+        }
+    }
+    div(0,0, n)
+    val sb = StringBuilder()
+    sb.append(m).append('\n').append(z).append('\n').append(p)
+    print(sb)
+}
 ```
 - 행렬을 전부 순서대로 순회하다가 다른 숫자가 나왔다면, 행렬을 9등분하여 다시 순회한다.
   - 재귀적으로 순회하면 된다.
