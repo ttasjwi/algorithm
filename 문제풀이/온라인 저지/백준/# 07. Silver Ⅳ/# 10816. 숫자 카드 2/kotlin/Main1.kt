@@ -1,5 +1,3 @@
-import java.lang.StringBuilder
-
 fun main() {
     val counter = IntArray(20_000_001)
     var n = i()
