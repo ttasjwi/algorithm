@@ -15,49 +15,60 @@
 ---
 
 # 풀이1 : 해시 사용
-```python
-input()
-a = set(input().split())
-input()
-answer = '\n'.join('1' if x in a else '0' for x in input().split())
-print(answer, end='')
+```kotlin
+fun main() {
+    var n = i()
+    val s = HashSet<Int>()
+    while (n-- > 0) s.add(i())
+    var m = i()
+    val sb = StringBuilder()
+    while (m -- > 0) {
+        sb.append(if (i() in s) 1 else 0).append('\n')
+    }
+    print(sb)
+}
 ```
-- set을 통해 저장하면, 이후에 접근할 때는 O(1)로 접근할 수 있어서 빠르게 해당 숫자가 존재하는 지 확인할 수 있다.
+- 해시 테이블을 통해 저장하면, 이후에 접근할 때는 O(1)로 접근할 수 있어서 빠르게 해당 숫자가 존재하는 지 확인할 수 있다.
 
 ---
 
 # 풀이2
-```python
-a = None
+```kotlin
+fun main() {
+    val n = i()
+    val arr = IntArray(n)
+    for (i in 0 until n) {
+        arr[i] = i()
+    }
+    Arrays.sort(arr)
 
+    var m = i()
+    val sb = StringBuilder()
 
-def main():
-    global a
-    input()
-    a = sorted(map(int, input().split()))
-    input()
-    answer = '\n'.join(binary_search(x) for x in map(int, input().split()))
-    print(answer, end='')
+    fun bin(t: Int) {
+        var lt = 0
+        var rt = n-1
+        var mid: Int
 
+        while (lt <= rt) {
+            mid = (lt + rt) shr 1
+            if (arr[mid] == t) {
+                sb.append(1).append('\n')
+                return
+            } else if (arr[mid] > t) {
+                rt = mid - 1
+            } else {
+                lt = mid + 1
+            }
+        }
+        sb.append(0).append('\n')
+    }
 
-def binary_search(x):
-    lt = 0
-    rt = len(a) - 1
-
-    while lt <= rt:
-        mid = (lt + rt) // 2
-        if a[mid] == x:
-            return '1'
-        elif a[mid] > x:
-            rt = mid - 1
-        else:
-            lt = mid + 1
-
-    return '0'
-
-
-if __name__ == '__main__':
-    main()
+    while (m -- > 0) {
+        bin(i())
+    }
+    print(sb)
+}
 ```
 - 이 문제의 출제의도는 이분탐색이였던 것 같다.
 - 정렬 후 이분탐색을 하면서 찾고자하는 대상의 존재 여부를 파악한다.
