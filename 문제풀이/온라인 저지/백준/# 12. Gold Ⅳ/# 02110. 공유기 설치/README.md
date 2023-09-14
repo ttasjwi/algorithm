@@ -15,53 +15,55 @@
 ---
 
 # 풀이
-```python
-import sys
-
-
-def solution():
-    n, c, adr = input()
-    return parametric_search(adr, c, n)
-
-
-def input():
-    src = sys.stdin.buffer
-    n, c = map(int, src.readline().split())
-    adr = [int(x) for x in src.read().splitlines()]
-    adr.sort()
-    return n, c, adr
-
-
-def parametric_search(adr, c, n):
-    answer = 0
-    lt = 1
-    rt = adr[-1] - adr[0]
-    while lt <= rt:
-        cnt = 1
-        mid = (lt + rt) >> 1
-        before = adr[0]
-        for i in range(1, n):
-            if cnt == c:
+```kotlin
+fun main() {
+    val n = i()
+    val c = i()
+    val arr = IntArray(n)
+    for (i in 0 until n) {
+        arr[i] = i()
+    }
+    Arrays.sort(arr)
+    var lt = 1
+    var rt = arr[n-1] - arr[0]
+    var mid: Int
+    var cnt: Int
+    var answer = 1
+    var success : Boolean
+    var before: Int
+    while (lt <= rt) {
+        mid = (lt + rt) shr 1
+        cnt = 0
+        success = false
+        before = arr[0] - mid
+        for (e in arr) {
+            if (e - before >= mid) {
+                cnt ++
+                before = e
+            }
+            if (cnt >= c) {
+                success = true
                 break
-            if adr[i] - before >= mid:
-                before = adr[i]
-                cnt += 1
-        if cnt == c:
+            }
+        }
+        if (success) {
             answer = mid
             lt = mid + 1
-        else:
+        } else {
             rt = mid - 1
-    return answer
-
-
-print(solution())
+        }
+    }
+    print(answer)
+}
 ```
-- input : 입력
-- parametric_search : 매개변수 탐색
-  - 우리가 찾는건 가장 큰 '공유기간 최소 인접거리'이다. 첫번째 집에 공유기를 설치하고, 그 이후 모든 집을 순서대로 방문할 때마다 이전의 공유기
-  설치지점으로부터의 거리가 '공유기간 최소 인접거리'보다 크거나 같으면 공유기의 갯수가 모자랄 때까지 설치를 계속한다.
-  - 공유기가 남아돈다면 너무 '공유기간 최소 인접거리'가 길다는 것을 의미하고, rt를 mid보다 작게 하여 더 작은 범위에서 찾게 한다.
-  - 공유기를 모두 사용하였다면, 조건을 만족한다. answer를 mid로 변경한 뒤 lt를 mid보다 크게 하여 더 큰 범위에서 찾게 한다.
-    - 이 과정을 거치면 조건을 만족하는 한 mid는 계속적으로 증가하여 최적화된다. 
+- 입력을 받고, 입력받은 배열을 정렬한다.
+- 우리가 구하는 것은 '공유기간 최소 인접거리'의 최댓값이다.
+- lt부터 rt까지 매개변수 탐색한다.
+  - 초기 lt : 1
+  - 초기 rt : `arr[n-1] - arr[0]` (끝과 맨처음의 인접거리)
+- 공유기를 0번 인덱스부터 순서대로 설치하면서 설치한 공유기 갯수를 센다. 이 갯수가 c 이상이 되면 성공이고, c에 못 미치면 실패다.
+  - 성공하면 answer를 갱신한뒤 lt를 mid보다 1 크게 잡아 더 큰 최소 인접거리를 탐색한다.(최적화) 
+  - 실패하면 rt를 mid 보다 작게 잡는다.
+- 최종적으로 answer를 출력하면 된다
 
 ---
