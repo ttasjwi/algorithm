@@ -1,21 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 11286
-- 제목 : 절댓값 힙
-- 난이도 : Silver 1
-- 절댓값이 제일 작은(만약 절댓값이 같으면 실제 값이 더 작은) 요소를 최솟값으로 취급하는 최소힙 구현
-- 문제 : <a href="https://www.acmicpc.net/problem/11286" target="_blank">링크</a>
-
----
-
-# 필요지식
-- 힙
-- 우선순위 큐
-
----
-
-# 풀이
-```kotlin
 fun main() {
     var n = i()
     val heap = IntArray(n+1)
@@ -79,7 +61,26 @@ fun main() {
     }
     print(sb)
 }
-```
-- 배열을 이용해 절댓값 힙을 구현했다.
 
----
+private const val S = 65536
+private val iS = java.io.DataInputStream(System.`in`)
+private val b = ByteArray(S)
+private var c = 0
+private var l = 0
+
+private fun i(): Int {
+    var v = 0
+    var c = r()
+    val n = c.toInt() == 45
+    c = if (n) r() else c
+    do { v = v * 10 + c - 48 } while (r().also { c = it } > 47)
+    return if (n) -v else v
+}
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
+}
