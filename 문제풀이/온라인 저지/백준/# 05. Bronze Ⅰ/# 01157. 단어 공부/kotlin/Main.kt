@@ -1,21 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 01157
-- 제목 : 단어 공부
-- 난이도 : Bronze 1
-- 가장 많이 사용된 알파벳을 대문자로 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/1157" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 문자열 처리
-- 카운팅
-
----
-
-# 풀이
-```kotlin
 fun main() {
     val c = IntArray(26)
     while(r().also {
@@ -35,7 +17,17 @@ fun main() {
     }
     print(answer)
 }
-```
-- 단어마다 입력을 받고 배열로 카운팅을 함.
 
----
+private const val S = 65536
+private val iS = java.io.DataInputStream(System.`in`)
+private val b = ByteArray(S)
+private var c = 0
+private var l = 0
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
+}
