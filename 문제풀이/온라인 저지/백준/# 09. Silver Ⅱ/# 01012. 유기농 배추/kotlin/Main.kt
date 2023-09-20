@@ -1,21 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 01012
-- 제목 : 유기농 배추
-- 난이도 : Silver 2
-- 각 테스트 케이스에 대해 필요한 최소의 배추흰지렁이 마리 수를 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/1012" target="_blank">링크</a>
-
----
-
-# 필요 알고리즘
-- DFS
-- BFS
-
----
-
-# 풀이
-```kotlin
 fun main() {
     val dx = intArrayOf(1, 0, -1, 0)
     val dy = intArrayOf(0, 1, 0, -1)
@@ -65,7 +47,25 @@ fun main() {
     }
     print(sb)
 }
-```
-- DFS/BFS를 이용하여 배추가 연속된 영역의 갯수를 세고 출력한다.
 
----
+
+private const val S = 65536
+private val iS = java.io.DataInputStream(System.`in`)
+private val b = ByteArray(S)
+private var c = 0
+private var l = 0
+
+private fun i(): Int {
+    var v = 0
+    var c = r()
+    do v = v * 10 + c - 48 while (r().also { c = it } > 47)
+    return v
+}
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
+}
