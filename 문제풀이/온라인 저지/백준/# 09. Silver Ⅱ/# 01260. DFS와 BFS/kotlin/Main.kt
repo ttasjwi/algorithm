@@ -1,21 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 01260
-- 제목 : DFS와 BFS
-- 난이도 : Silver 2
-- 그래프를 DFS로 탐색한 결과와 BFS로 탐색한 결과를 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/1260" target="_blank">링크</a>
-
----
-
-# 필요 알고리즘
-- DFS(깊이 우선 탐색)
-- BFS(너비 우선 탐색)
-
----
-
-# 풀이
-```kotlin
 fun main() {
     val n = i()
     val m = i()
@@ -81,9 +63,24 @@ class DQ(cap: Int) {
     fun dq() = arr[((f + 1 + c) % c).also { f = it; s-- }]
     fun isNotEmpty() = s > 0
 }
-```
-- DFS는 스택, BFS는 큐를 기반으로 동작시켜야한다.
-- 이 두가지를 모두 가능하게 할수 있는 자료구조는 덱이 있다.
-- 배열로 원형 덱을 구현하고 DFS, BFS를 수행했다.
 
----
+private const val S = 65536
+private val iS = java.io.DataInputStream(System.`in`)
+private val b = ByteArray(S)
+private var c = 0
+private var l = 0
+
+private fun i(): Int {
+    var v = 0
+    var c = r()
+    do v = v * 10 + c - 48 while (r().also { c = it } > 47)
+    return v
+}
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
+}
