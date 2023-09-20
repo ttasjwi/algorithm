@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 02667
-- 제목 : 단지번호붙이기
-- 난이도 : Silver 1
-- 지도를 입력하여 단지수를 출력하고, 각 단지에 속하는 집의 수를 오름차순으로 정렬하여 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/2667" target="_blank">링크</a>
-
----
-
-# 필요 알고리즘
-- DFS
-
----
-
-# 풀이
-```kotlin
 import java.util.*
 
 fun main() {
@@ -67,9 +50,24 @@ fun main() {
     }
     print(sb)
 }
-```
-- DFS를 통해 연결된 단지수를 세고, 연결된 집의 수를 카운팅한다.
-- 여기서는 스택을 이용해 DFS를 구현했다.
-- BFS를 이용해 이 문제를 풀어도 된다.
 
----
+private const val S = 65536
+private val iS = java.io.DataInputStream(System.`in`)
+private val b = ByteArray(S)
+private var c = 0
+private var l = 0
+
+private fun i(): Int {
+    var v = 0
+    var c = r()
+    do v = v * 10 + c - 48 while (r().also { c = it } > 47)
+    return v
+}
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
+}
