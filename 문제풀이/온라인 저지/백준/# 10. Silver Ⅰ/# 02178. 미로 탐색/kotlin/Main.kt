@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 02178
-- 제목 : 미로 탐색
-- 난이도 : Silver 1
-- 미로의 (1,1)에서 (N,M)까지 지나야 하는 최소의 칸 수를 구하기
-- 문제 : <a href="https://www.acmicpc.net/problem/2178" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- BFS(너비 우선 탐색)
-
----
-
-## 풀이
-```kotlin
 fun main() {
     val dr = intArrayOf(0, 1, 0, -1)
     val dc = intArrayOf(1, 0, -1, 0)
@@ -65,13 +48,24 @@ fun main() {
     }
     print(depth)
 }
-```
-- 목적지까지의 거리를 구할 때 가능한 빨리 찾아내는 것이 중요하므로 BFS를 통해 탐색한다.
-- 다음을 큐가 빌 때까지 반복한다.
-  - 큐의 요소 수를 세고, depth을 증가시킨다. 요소의 수 만큼 다음을 반복한다.
-  - 큐에서 요소를 꺼낸다.
-  - 사방을 탐색하여, 갈 수 있는 곳들 중 안 간 곳을 찾는다.
-    - 목적지이면 여기서 탈출한다.(level +1)
-  - 위치를 큐에 삽입하고, 해당 위치를 갈 수 없는 곳으로 마킹한다.
 
----
+private const val S = 65536
+private val iS = java.io.DataInputStream(System.`in`)
+private val b = ByteArray(S)
+private var c = 0
+private var l = 0
+
+private fun i(): Int {
+    var v = 0
+    var c = r()
+    do v = v * 10 + c - 48 while (r().also { c = it } > 47)
+    return v
+}
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
+}
