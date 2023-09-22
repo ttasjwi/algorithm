@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 07569
-- 제목 : 토마토
-- 난이도 : Gold 5
-- 토마토가 모두 익을 때까지 최소 며칠이 걸리는지를 계산해서 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/7569" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- BFS
-
----
-
-# 풀이
-```kotlin
 fun main() {
     val dr = intArrayOf(0, 1, 0, -1, 0, 0)
     val dc = intArrayOf(1, 0, -1, 0, 0, 0)
@@ -81,13 +64,28 @@ fun main() {
     }
     print(if (notRipe > 0) -1 else day)
 }
-```
-- 입력을 받으면서
-    - 익은 토마토는 큐에 삽입하고 그 자리를 체크
-    - 안 익은 토마토는 갯수를 세기
-    - 비어있는 칸은 체크 처리
-- 익은 토마토가 하나라도 존재하고, 안 익은 토마토가 없으면 0을 출력하고 종료
-- 큐가 빌 때까지 반복
-    - day 증가
-    - 큐에서 요소를 꺼내서 인접한 곳을 다시 큐에 전부 삽입하고 그 자리를 체크, 안 익은 토마토 갯수 차감
-- 최종적으로 안 익은 토마토가 남아 있으면 -1 출력, 없으면 day 출력
+
+private const val S = 65536
+private val iS = java.io.DataInputStream(System.`in`)
+private val b = ByteArray(S)
+private var c = 0
+private var l = 0
+
+private fun i(): Int {
+    var v = 0
+    var c = r()
+    val n = c.toInt() == 45
+    c = if (n) r() else c
+    do {
+        v = v * 10 + c - 48
+    } while (r().also { c = it } > 47)
+    return if (n) -v else v
+}
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
+}
