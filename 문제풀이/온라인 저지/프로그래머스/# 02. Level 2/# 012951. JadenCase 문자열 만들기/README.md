@@ -14,17 +14,41 @@
 ---
 
 # 풀이
-```python
-def solution(s: str):
-    chars = list(s)
 
-    for i, ch in enumerate(chars):
-        if i - 1 == -1 or chars[i - 1] == ' ':
-            chars[i] = ch.upper()
-        else:
-            chars[i] = ch.lower()
-
-    return ''.join(chars)
+## 풀이1: 반복문
+```kotlin
+class Solution {
+    fun solution(s: String): String {
+        var isStartChar = true
+        val sb = StringBuilder()
+        for (i in s.indices) {
+            if (s[i] == ' ') {
+                sb.append(s[i])
+                isStartChar = true
+            } else if (isStartChar) {
+                sb.append(s[i].uppercaseChar())
+                isStartChar = false
+            } else {
+                sb.append(s[i].lowercaseChar())
+            }
+        }
+        return sb.toString()
+    }
+}
 ```
-- 이전 인덱스의 번호가 -1이거나, 이전 인덱스의 문자가 공백문자이면 대문자화한다.
-- 그 외의 경우에 대해서는 모두 소문자화한다.
+- StringBuilder에 순서대로 문자를 수집한다.
+- 단어의 시작점임을 구분하기 위해 isStartChar를 사용한다.
+- 공백문자를 만나면 isStartChar를 true로 초기화한다.
+- isStartChar가 true이면 첫문자이므로 대문자화한다. 그리고 isStartChar를 false로 변경한다.
+- isStartChar가 false이면 중간문자이므로 소문자화한다.
+
+## 풀이2: 고차함수
+```kotlin
+class Solution2 {
+    fun solution(s: String) = s.lowercase().split(' ').map { it.capitalize() }.joinToString(" ")
+}
+```
+- 이 방식을 쓰면 좀 더 간편하게 문제를 해결할 수 있긴하다.
+- 하지만 1번 방식은 0.1ms 로 해결할 수 있지만 2번 방식은 10ms 넘게 걸린다.
+
+---
