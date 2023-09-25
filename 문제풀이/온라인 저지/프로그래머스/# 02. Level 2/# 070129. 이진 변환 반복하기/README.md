@@ -10,36 +10,34 @@
 ---
 
 # 필요 지식
+- 문자열 처리
 - 구현
 
 ---
 
 # 풀이
-```python
-zero = 0
-convert_cnt = 0
-
-
-def solution(s):
-    while s != "1":
-        s = convert(s)
-    return [convert_cnt, zero]
-
-
-def convert(x):
-    global zero, convert_cnt
-    cnt = 0
-    for ch in x:
-        if ch == '0':
-            zero += 1
-        else:
-            cnt += 1
-    convert_cnt += 1
-    return bin(cnt)[2:]
-
+```kotlin
+fun solution(s: String): IntArray {
+    var x = s
+    val sb= StringBuilder()
+    var cnt = 0
+    var delete = 0
+    while (x != "1") {
+        for (ch in x) {
+            if (ch == '0') delete ++
+            else sb.append(ch)
+        }
+        x = sb.length.toString(2)
+        cnt ++
+        sb.setLength(0)
+    }
+    return intArrayOf(cnt, delete)
+}
 ```
-- 문자를 순차적으로 읽어가면서 '0'의 갯수를 누적 카운팅
-- 매 순간 문자열에서 '0'이 아닌 것들의 갯수를 구하고 이 갯수를 이진 문자열로 변환한다.
-- 최종적으로 변환횟수와 '0' 갯수 반환
+- while 문을 통해 루프를 돌리며 변환 작업을 한다.(x가 1이 아니게 될 때까지)
+  - 문자를 하나하나 읽어가며 0이면 delete 증가 1이면 sb에 append
+  - sb의 길이를 2진 문자열로 변환한뒤 x에 재할당
+  - cnt 증가 후 sb 초기화
+- 이렇게 구해진 cnt와 delete를 배열에 담아 반환한다.
 
 ---
