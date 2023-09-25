@@ -14,11 +14,32 @@
 ---
 
 # 풀이
-```python
-def solution(s):
-    nums = list(map(int, s.split()))
-    return str(min(nums)) + ' ' + str(max(nums))
+## 풀이1: 반복문
+```kotlin
+class Solution {
+    fun solution(s: String): String {
+        var v: Int
+        var min = Integer.MAX_VALUE
+        var max = Integer.MIN_VALUE
+        for (x in s.split(' ')) {
+            v = x.toInt()
+            if (min > v) min = v
+            if (max < v) max = v
+        }
+        return "$min $max"
+    }
+}
 ```
-- 배열로 분리해서 받고, 이를 min, max로 최소/최대를 찾아 결합해 반환
+- 반복문을 통해 순회하면서  최소 최대를 갱신시키고 문자열 형태로 반환
+
+## 풀이2: 고차함수
+```kotlin
+class Solution {
+    fun solution(s: String): String = s.split(' ').map { it.toInt() }.let { "${it.min()} ${it.max()}" }
+}
+```
+- map : 변환
+- let : it을 매개변수로 사용하고 코드블록의 수행 결과값을 반환한다.
+  - 비교) also : it을 매개변수로 사용하고 it 그 자체를 그대로 반환한다.
 
 ---
