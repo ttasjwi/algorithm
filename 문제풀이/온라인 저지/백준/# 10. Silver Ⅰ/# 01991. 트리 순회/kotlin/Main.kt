@@ -1,21 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 01991
-- 제목 : 트리 순회
-- 난이도 : Silver 1
-- 이진 트리가 주어질 때 첫째 줄에 전위 순회, 둘째 줄에 중위 순회, 셋째 줄에 후위 순회한 결과를 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/1991" target="_blank">링크</a>
-
----
-
-# 필요 알고리즘
-- DFS
-- 트리
-
----
-
-# 풀이
-```kotlin
 fun main() {
     val n = i()
     val child = Array(n+1){IntArray(2)}
@@ -55,9 +37,24 @@ fun main() {
     last(1)
     print(sb)
 }
-```
-- 전위 순회 : 루트 - 왼쪽 - 오른쪽
-- 중위 순회 : 왼쪽 - 루트 - 오른쪽
-- 후위 순회 : 왼쪽 - 오른쪽 - 루트
 
----
+private const val S = 65536
+private val iS = java.io.DataInputStream(System.`in`)
+private val b = ByteArray(S)
+private var c = 0
+private var l = 0
+
+private fun i(): Int {
+    var v = 0
+    var c = r()
+    do v = v * 10 + c - 48 while (r().also { c = it } > 47)
+    return v
+}
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
+}
