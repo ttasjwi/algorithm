@@ -14,18 +14,18 @@
 ---
 
 # 풀이
-```python
-import sys
-
-lines = sys.stdin.buffer.read().splitlines()
-print = sys.stdout.write
-
-cursor = 1
-for _ in range(int(lines[0])):
-    n, m = map(int, lines[cursor].split())
-    print(str(n - 1))
-    print('\n')
-    cursor += m + 1
+```kotlin
+fun main() {
+    val sb = StringBuilder()
+    repeat (i()) {
+        sb.append(i() - 1).append('\n')
+        repeat(i()) {
+            i()
+            i()
+        }
+    }
+    print(sb)
+}
 ```
 - 이 문제의 조건에서 '연결 그래프'라는 부분을 잘 확인해야하는데, 이 말은 임의의 두 점을 선택했을 때 반드시 그 둘을 잇는 경로가
 존재함을 의미한다.
