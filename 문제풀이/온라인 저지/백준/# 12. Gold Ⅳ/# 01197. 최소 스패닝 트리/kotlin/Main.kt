@@ -1,20 +1,5 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 01197
-- 제목 : 최소 스패닝 트리
-- 난이도 : Gold 4
-- 그래프가 주어졌을 때, 그 그래프의 최소 스패닝 트리를 구하고, 최소 스패닝 트리의 가중치를 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/1197" target="_blank">링크</a>
+import java.util.*
 
----
-
-# 필요 지식
-- 크루스칼 알고리즘 -> 최소 스패닝 트리(MST)
-
----
-
-# 풀이
-```kotlin
 fun main() {
     val v = i()
     val e = i()
@@ -56,11 +41,30 @@ fun main() {
 data class Edge(val from: Int, val to: Int, val cost: Int) : Comparable<Edge> {
     override fun compareTo(other: Edge): Int = cost - other.cost
 }
-```
-- find 함수 : 루트 노드를 찾아내고 현재 부모를 루트 노드로 갱신
-- union 함수 : 두 노드의 부모를 통일
-- 간선들을 비용 순으로 오름차순 정렬한다. 
-- 모든 간선을 순회하면서, 사이클이 없을 경우(부모가 서로 다를 경우)에 한하여 union하고 가중치를 더해 나간다.
-- cnt를 세고 모든 노드들을 순회할 필요 없이, cnt가 v-1(노드-1)일 때 바로 탈출할 수 있다.
 
----
+
+private const val S = 65536
+private val iS = java.io.DataInputStream(System.`in`)
+private val b = ByteArray(S)
+private var c = 0
+private var l = 0
+
+private fun i(): Int {
+    var v = 0
+    var c = r()
+    val n = c.toInt() == 45
+    c = if (n) r() else c
+    do {
+        v = v * 10 + c - 48
+    } while (r().also { c = it } > 47)
+    return if (n) -v else v
+}
+
+
+private fun r(): Byte {
+    if (c == l) {
+        l = iS.read(b, 0.also { c = it }, S)
+        if (l == -1) b[0] = -1
+    }
+    return b[c++]
+}
