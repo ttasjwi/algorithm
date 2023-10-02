@@ -20,16 +20,18 @@ private fun i(): Int {
     return v
 }
 
-private fun i() : Int {
+private fun i(): Int {
     var v = 0
     var c = r()
     val n = c == ASCII_minus
     c = if (n) r() else c
-    do { v = v * 10 + c - 48 } while (isDigit(r().also { c = it }))
+    do {
+        v = v * 10 + c - 48
+    } while (isDigit(r().also { c = it }))
     return if (n) -v else v
 }
 
-private fun s() : String {
+private fun s(): String {
     var c = r()
     do rsb.append(c.toChar()) while (!isSpace(r().also { c = it }))
     val s = rsb.toString()
@@ -43,11 +45,7 @@ private fun r(): Byte {
 }
 
 private fun fillBuffer() {
-    try {
-        bytesread = din.read(inbuffer, 0.also { inbufferpointer = it }, inbuffer.size)
-    } catch (e: Exception) {
-        throw RuntimeException(e)
-    }
+    bytesread = din.read(inbuffer, 0.also { inbufferpointer = it }, inbuffer.size)
 }
 
 private fun writeStr(s: String) {
@@ -95,11 +93,7 @@ private fun writeN() {
 
 private fun flushBuffer() {
     if (outbufferpointer != 0) {
-        try {
-            dout.write(outbuffer, 0, outbufferpointer)
-        } catch (e: Exception) {
-            throw RuntimeException(e)
-        }
+        dout.write(outbuffer, 0, outbufferpointer)
         outbufferpointer = 0
     }
 }

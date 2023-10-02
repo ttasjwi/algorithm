@@ -1,127 +1,125 @@
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+
 public class Main {
 
-    public static void main(String[] args) throws java.io.IOException {
+    public static void main(String[] args) {
 
     }
 
-    // 0 또는 양수 Int
-    private static int i() throws java.io.IOException {
+    private static final byte EOF = -1;
+    private static final byte ASCII_n = 10;
+    private static final byte ASCII_space = 32;
+    private static final byte ASCII_minus = 45;
+    private static final byte ASCII_0 = 48;
+    private static final DataInputStream din = new DataInputStream(System.in);
+    private static final DataOutputStream dout = new DataOutputStream(System.out);
+    private static final byte[] inbuffer = new byte[65536];
+    private static int inbufferpointer;
+    private static int bytesread;
+    private static final byte[] outbuffer = new byte[65536];
+    private static int outbufferpointer;
+    private static final byte[] bytebuffer = new byte[20];
+    private static final StringBuilder rsb = new StringBuilder();
+
+    private static int i() {
         int v = 0;
-        int c = System.in.read();
-        do v = v * 10 + (c - 48); while((c = System.in.read()) > 47);
+        byte c = r();
+        do {v = v * 10 + c - 48;} while (isDigit((c = r())));
         return v;
     }
 
-    // 0 또는 양수 long
-    private static long i() throws java.io.IOException {
-        long v = 0;
-        int c = System.in.read();
-        do v = v * 10 + (c - 48); while((c = System.in.read()) > 47);
-        return v;
-    }
-
-    // 음수 포함 int
-    private static int i() throws java.io.IOException {
+    private static int i() {
         int v = 0;
-        int c = System.in.read();
-        boolean n = c == 45;
-        c = n ?  System.in.read() : c;
-        do { v = v * 10 + c - 48;} while ((c = System.in.read()) > 47);
-        return n? -v : v;
-    }
-
-    // 음수 포함 long
-    private static long i() throws java.io.IOException {
-        long v = 0;
-        int c = System.in.read();
-        boolean n = c == 45;
-        if (n) c = System.in.read();
-        do v = v * 10 + c - 48; while ((c = System.in.read()) > 47);
-        return n? -v : v;
-    }
-
-    private static final rsb = new StringBuilder();
-
-    // 공백문자까지
-    private static String s() throws java.io.IOException {
-        int c = r();
-        do rsb.append((char)c); while ((c = r()) > 32);
-        String s = rsb.toString();
-        rsb.setLength(0);
-        return s;
-    }
-
-    // 개행문자까지
-    private static String s() throws java.io.IOException {
-        int c = System.in.read();
-        do rsb.append((char)c); while ((c = System.in.read()) > 13);
-        String s = rsb.toString();
-        rsb.setLength(0);
-        return s;
-    }
-
-    private static final int S = 65536;
-    private static final java.io.InputStream IS = new java.io.DataInputStream(System.in);
-    private static final byte[] b = new byte[S];
-    private static int c = 0;
-    private static int l = 0;
-    private static StringBuilder rsb = new StringBuilder();
-
-    private static int i() throws java.io.IOException {
-        int v = 0;
-        int c = r();
-        do v = v * 10 + c - 48; while ((c = r()) > 47);
-        return v;
-    }
-
-    private static long i() throws java.io.IOException {
-        long v = 0;
-        int c = r();
-        do v = v * 10 + c - 48; while ((c = r()) > 47);
-        return v;
-    }
-
-    private static int i() throws java.io.IOException {
-        int v = 0;
-        int c = r();
-        boolean n = c == 45;
-        if (n) c = r();
-        do v = v * 10 + c - 48; while ((c = r()) > 47);
+        byte c = r();
+        boolean n = c == ASCII_minus;
+        c =  n ? r() : c;
+        do {v = v * 10 + c - 48;} while (isDigit((c = r())));
         return n ? -v : v;
     }
 
-    private static long i() throws java.io.IOException {
-        int v = 0;
-        int c = r();
-        boolean n = c == 45;
-        if (n) c = r();
-        do v = v * 10 + c - 48; while ((c = r()) > 47);
-        return n ? -v : v;
-    }
-
-    // 공백문자까지
-    private static String s() throws java.io.IOException {
-        int c = r();
-        do rsb.append((char)c); while ((c = r()) > 32);
+    private static String s() {
+        byte c = r();
+        do {rsb.append(c);} while (!isSpace((c = r())));
         String s = rsb.toString();
         rsb.setLength(0);
         return s;
     }
 
-    // 개행문자까지
-    private static String s() throws java.io.IOException {
-        int c = r();
-        do rsb.append((char)c); while ((c = r()) > 13);
-        String s = rsb.toString();
-        rsb.setLength(0);
-        return s;
+    private static byte r() {
+        if (inbufferpointer == bytesread) fillBuffer();
+        return (bytesread == EOF) ? EOF : inbuffer[inbufferpointer++];
     }
 
-    private static byte r() throws java.io.IOException {
-        if (c == l) {
-            l = IS.read(b, (c=0), S);
-            if (l == -1) b[0] = -1;
+    private static void fillBuffer() {
+        try {
+            bytesread = din.read(inbuffer, (inbufferpointer = 0), inbuffer.length);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return b[c++];
+    }
+
+    private void writeStr(String s) {
+        for (int i=0; i<s.length(); i++) {
+            writeByte((byte) s.charAt(i));
+        }
+    }
+
+    private void writeChar(char ch) {
+        writeByte((byte) ch);
+    }
+
+    private void writeInt(int i) {
+        if (i == 0) {
+            writeByte(ASCII_0);
+        } else {
+            if (i < 0) {
+                writeByte(ASCII_minus);
+                i = -i;
+            }
+            int index = 0;
+            while (i > 0) {
+                bytebuffer[index++] = (byte)(i % 10 + ASCII_0);
+                i /= 10;
+            }
+            while (index-- > 0) {
+                writeByte(bytebuffer[index]);
+            }
+        }
+    }
+
+    private void writeSpace() {
+        writeByte(ASCII_space);
+    }
+
+    private void writeN() {
+        writeByte(ASCII_n);
+    }
+
+    private void writeByte(byte b) {
+        if (outbufferpointer == outbuffer.length) flushBuffer();
+        outbuffer[outbufferpointer++] = b;
+    }
+
+    private void flushBuffer() {
+        if (outbufferpointer != 0) {
+            try {
+                dout.write(outbuffer, 0, outbufferpointer)
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            outbufferpointer = 0;
+        }
+    }
+
+    private static boolean isSpace(byte b) {
+        return b <= ASCII_space;
+    }
+    private static boolean isDigit(byte b) {
+        return b >= ASCII_0;
+    }
+
+    private static boolean isEOF() {
+        return bytesread == EOF;
     }
 }
