@@ -14,41 +14,66 @@
 ---
 
 # 풀이
-```python
-import sys
+```kotlin
+fun main() {
+    val n = i()
+    val m = i()
 
-src = sys.stdin.buffer
-n, _ = map(int, src.readline().split())
-graph = [[] for _ in range(n + 1)]
-in_degrees = [0] * (n + 1)
+    val graph = Array(n + 1) { ArrayList<Int>() }
+    val inDegree = IntArray(n + 1)
 
-for line in src.read().splitlines():
-    a, b = map(int, line.split())
-    in_degrees[b] += 1
-    graph[a].append(b)
+    var from: Int
+    var to: Int
 
-s = []
-answer = []
-for i in range(1, n + 1):
-    if not in_degrees[i]:
-        s.append(i)
-        answer.append(str(i))
+    repeat(m) {
+        from = i()
+        to = i()
+        graph[from].add(to)
+        inDegree[to]++
+    }
 
-while s:
-    x = s.pop()
-    for y in graph[x]:
-        in_degrees[y] -= 1
-        if not in_degrees[y]:
-            s.append(y)
-            answer.append(str(y))
-sys.stdout.write(' '.join(answer))
+    val st = IntArray(n)
+    var size = 0
+    for (i in 1..n) {
+        if (inDegree[i] == 0) {
+            st[size++] = i
+            ws(i)
+        }
+    }
+
+    var cur: Int
+    while (size > 0) {
+        cur = st[--size]
+        for (next in graph[cur]) {
+            inDegree[next]--
+            if (inDegree[next] == 0) {
+                st[size++] = next
+                ws(next)
+            }
+        }
+    }
+    flushBuffer()
+}
 ```
-- 비교 결과들을 기반으로 진입차수를 초기화하고, graph를 초기화한다.
-- 진입차수가 0인 지점부터 스택에 삽입한다.
-- 스택이 빌 때까지 스택의 요소를 꺼낸다.
-  - answer에 꺼낸 요소를 추가한다. 
-  - 스택에서 꺼낸 요소들에 대해 다음 요소들의 진입차수를 1씩 차감한다.
-    - 진입차수가 0이면 스택에 삽입한다.
-- answer를 출력한다.
+- 준비
+  - 정점의 갯수
+  - 인접 그래프 : 각 정점에서 나오는 간선 목록
+  - 진입차수 배열(in) : 기본적으로 0으로 초기화한다.
+  - 결과 배열 : 위상정렬의 결과를 담은 배열 또는 StringBuilder
+- 간선 순회
+  - 출발, 도착 간선이 있을 경우 도착 노드의 진입차수를 1 증가시킨다.
+  - 인접 그래프에 시작점에서 나오는 간선을 삽입한다.
+  - 이 때 단방향임에 유의한다.
+- 정점 순회 : 진입차수가 0인 정점들
+  - 배열 또는 StringBuilder에 삽입한다.
+  - 정점을 스택에 삽입한다.
+- 스택이 빌 때까지 반복
+  - 정점을 꺼낸다.(진입차수가 0인 정점들)
+  - 연결된 정점들에 대하여
+    - 진입차수를 1씩 차감한다.
+    - 진입차수가 0인 요소들을
+      - 배열 또는 StringBuilder에 삽입힌다.
+      - 정점을 스택에 삽입한다.
+- 이렇게 구해진 결과 배열 또는 StringBuilder를 기반으로 결과를 출력한다.
 
 ---
