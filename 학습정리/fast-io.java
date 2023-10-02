@@ -59,17 +59,17 @@ public class Main {
         }
     }
 
-    private void writeStr(String s) {
+    private static void writeStr(String s) {
         for (int i=0; i<s.length(); i++) {
             writeByte((byte) s.charAt(i));
         }
     }
 
-    private void writeChar(char ch) {
+    private static void writeChar(char ch) {
         writeByte((byte) ch);
     }
 
-    private void writeInt(int i) {
+    private static void writeInt(int i) {
         if (i == 0) {
             writeByte(ASCII_0);
         } else {
@@ -88,20 +88,20 @@ public class Main {
         }
     }
 
-    private void writeSpace() {
+    private static void writeSpace() {
         writeByte(ASCII_space);
     }
 
-    private void writeN() {
+    private static void writeN() {
         writeByte(ASCII_n);
     }
 
-    private void writeByte(byte b) {
+    private static void writeByte(byte b) {
         if (outbufferpointer == outbuffer.length) flushBuffer();
         outbuffer[outbufferpointer++] = b;
     }
 
-    private void flushBuffer() {
+    private static void flushBuffer() {
         if (outbufferpointer != 0) {
             try {
                 dout.write(outbuffer, 0, outbufferpointer)
