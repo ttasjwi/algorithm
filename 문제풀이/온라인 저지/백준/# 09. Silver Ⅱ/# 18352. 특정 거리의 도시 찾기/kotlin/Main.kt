@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 18352
-- 제목 : 특정 거리의 도시 찾기
-- 난이도 : Silver 2
-- 최단 거리가 정확히 K인 모든 도시들의 번호를 출력
-- 문제 : <a href="https://www.acmicpc.net/problem/18352" target="_blank">링크</a>
-
----
-
-# 필요 알고리즘
-- 다익스트라 알고리즘
-
----
-
-# 풀이
-```kotlin
 fun main() {
     val n = i()
     val m = i()
@@ -107,16 +90,70 @@ class Heap(cap: Int) {
 
     fun isNotEmpty() = size != 0
 }
-```
-- 간선(Edge) : Comparable 구현
-  - 비용이 작을 수록 우선순위 높음
-  - 비용이 같다면 정점 번호가 작을 수록 우선순위 높음
-- 배열로 최소 힙을 구현했다.
-- 최소힙을 사용하여 다익스트라를 수행한다.
-  - 큐에서 꺼낸 간선의 비용이 k보다 커지는 시점에서 반복을 탈출시켜 불필요한 반복을 최소화했다.
-  - 큐에서 꺼낸 간선의 비용이 k일 경우
-    - 최초로 k가 됐다면 find를 true로 갱신한다.
-    - 출력에 추가
-- 최종적으로 find가 false 이면 -1을 출력하면 된다.
 
----
+private const val EOF = -1
+private const val ASCII_n: Byte = 10
+private const val ASCII_minus: Byte = 45
+private const val ASCII_0: Byte = 48
+private val din = java.io.DataInputStream(System.`in`)
+private val dout = java.io.DataOutputStream(System.out)
+private val inbuffer = ByteArray(65536)
+private var inbufferpointer = 0
+private var bytesread = 0
+private val outbuffer = ByteArray(65536)
+private var outbufferpointer = 0
+private val bytebuffer = ByteArray(20)
+
+private fun i(): Int {
+    var v = 0
+    var c = r()
+    do v = v * 10 + c - 48 while (isDigit(r().also { c = it }))
+    return v
+}
+
+private fun r(): Byte {
+    if (inbufferpointer == bytesread) fillBuffer()
+    return if (bytesread == EOF) EOF.toByte() else inbuffer[inbufferpointer++]
+}
+
+private fun fillBuffer() {
+    bytesread = din.read(inbuffer, 0.also { inbufferpointer = it }, inbuffer.size)
+}
+
+private fun writeInt(i: Int) {
+    var i = i
+    if (i == 0) {
+        writeByte(ASCII_0)
+    } else {
+        if (i < 0) {
+            writeByte(ASCII_minus)
+            i = -i
+        }
+        var index = 0
+        while (i > 0) {
+            bytebuffer[index++] = (i % 10 + ASCII_0).toByte()
+            i /= 10
+        }
+        while (index-- > 0) {
+            writeByte(bytebuffer[index])
+        }
+    }
+}
+
+private fun writeByte(b: Byte) {
+    if (outbufferpointer == outbuffer.size) flushBuffer()
+    outbuffer[outbufferpointer++] = b
+}
+
+private fun writeN() {
+    writeByte(ASCII_n)
+}
+
+private fun flushBuffer() {
+    if (outbufferpointer != 0) {
+        dout.write(outbuffer, 0, outbufferpointer)
+        outbufferpointer = 0
+    }
+}
+
+private fun isDigit(b: Byte) = b >= ASCII_0
