@@ -104,7 +104,7 @@ public class Main {
     private static void flushBuffer() {
         if (outbufferpointer != 0) {
             try {
-                dout.write(outbuffer, 0, outbufferpointer)
+                dout.write(outbuffer, 0, outbufferpointer);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
