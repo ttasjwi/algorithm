@@ -11,75 +11,126 @@
 # 필요 지식
 - 해시
 - 투포인터
+- 이분탐색
 
 ---
 
 # 풀이
-
-## 주의사항
-- '입력은 여러 개의 테스트 케이스로 이루어져 있다.' 라는 문구에 주의해야한다. 이 문제의 테스트 케이스는 1개가 아니라
-여러 건이다. 그래서 마지막 줄을 0 0으로 입력받는다고 되어 있는 것이다. 이것 때문에 여러번 틀렸다.
-
-## 풀이1 : 해시 사용
-```python
-import io, os, sys
-
-input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
-print = sys.stdout.write
-
-current = 0
-answer = []
-while True:
-    n, m = map(int, input().decode().split())
-
-    if n == 0 and m == 0:
-        break
-
-    a = set(int(input()) for _ in range(n))
-    b = set(int(input()) for _ in range(m))
-    answer.append(str(len(a & b)))
-
-answer = '\n'.join(answer)
-print(answer)
+## 풀이1: 투포인터
+```kotlin
+fun main() {
+    var n: Int
+    var m: Int
+    var items: IntArray
+    var p: Int
+    var cur: Int
+    var cnt: Int
+    while (true) {
+        n = i()
+        m = i()
+        if (n == 0 && m == 0) break
+        items = IntArray(n)
+        cnt = 0
+        for (i in 0 until n) {
+            items[i] = i()
+        }
+        p = 0
+        for (i in 0 until m) {
+            cur = i()
+            while (p < n && items[p] < cur) {
+                p++
+            }
+            if (p == n) continue
+            if (items[p] == cur) {
+                cnt++
+                p++
+            }
+        }
+        writeInt(cnt)
+    }
+    flushBuffer()
+}
 ```
-- set에다 각 숫자들을 저장해두고 교집합 연산의 크기를 순서대로 append
-- 메모리 비용이 비싸지만 빠르다
+- 처음 n개 입력은 배열에 저장한다.
+- 포인터를 0에 둔다.
+- 나머지 m개 입력에 대하여 포인터의 요소와 현재 요소를 비교하면서, 포인터 위치를 증가시켜 나간다.
+  - 현재 요소와 같으면 cnt, p 증가
+  - 현재 요소가 작으면 다음 반복
+  - 현재 요소가 크면 현재 요소가 작거나 같아질 때까지 p 증가
+- cnt를 증가
+- 이 모든 것은 테스트 케이스가 여러개 있으므로 이에 주의해서 반복한다.
 
-## 풀이2 : 투 포인터
-```python
-import io, os, sys
-
-input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
-print = sys.stdout.write
-
-current = 0
-answer = []
-while True:
-    n, m = map(int, input().decode().split())
-
-    if n == 0 and m == 0:
-        break
-
-    a = [int(input()) for _ in range(n)]
-    b = [int(input()) for _ in range(m)]
-
-    p1, p2 = 0, 0
-    count = 0
-    while p1 < n and p2 < m:
-        if a[p1] == b[p2]:
-            count += 1
-            p1 += 1
-            p2 += 1
-        elif a[p1] < b[p2]:
-            p1 += 1
-        else:
-            p2 += 1
-    answer.append(str(count))
-
-answer = '\n'.join(answer)
-print(answer)
+## 풀이2: 해시
+```kotlin
+fun main() {
+    var n: Int
+    var m: Int
+    var set: HashSet<Int>
+    var cur: Int
+    var cnt: Int
+    while (true) {
+        n = i()
+        m = i()
+        if (n == 0 && m == 0) break
+        set = HashSet()
+        cnt = 0
+        for (i in 0 until n) {
+            set += i()
+        }
+        for (i in 0 until m) {
+            cur = i()
+            if (set.contains(cur)) {
+                cnt++
+            }
+        }
+        writeInt(cnt)
+    }
+    flushBuffer()
+}
 ```
-- 투 포인터를 통해, 포인터를 전진시켜가면서 비교했다.
-- 해시 방식보다 느리다.
+- 해시 테이블을 사용하는 방식이다.
+- 요소 접근이 O(1)로 가능하긴 하나 공간 비용을 매우 많이 잡아먹는다.
 
----
+## 풀이3: 이분탐색
+```kotlin
+fun main() {
+    var n: Int
+    var m: Int
+    var items: IntArray
+    var cur: Int
+    var cnt: Int
+    var lt: Int
+    var rt: Int
+    var mid: Int
+    while (true) {
+        n = i()
+        m = i()
+        if (n == 0 && m == 0) break
+        items = IntArray(n)
+        cnt = 0
+        for (i in 0 until n) {
+            items[i] = i()
+        }
+        for (i in 0 until m) {
+            cur = i()
+            lt = 0
+            rt = n-1
+            while (lt <= rt) {
+                mid = (lt + rt) shr 1
+                if (items[mid] == cur) {
+                    cnt ++
+                    break
+                } else if (items[mid] < cur) {
+                    lt = mid + 1
+                } else {
+                    rt = mid - 1
+                }
+            }
+        }
+        writeInt(cnt)
+    }
+    flushBuffer()
+}
+```
+- 현재 요소의 존재 여부를 앞의 n개 배열에서 찾아야한다.
+- 그런데 이미 정렬되어 있으므로 이분탐색으로 찾아도 좋다.
