@@ -1,10 +1,10 @@
 # 문제
 - 플랫폼 : 백준
-- 번호 : 01753
-- 제목 : 최단경로
+- 번호 : 11404
+- 제목 : 플로이드
 - 난이도 : Gold 4
-- 방향그래프가 주어지면 주어진 시작점에서 다른 모든 정점으로의 최단 경로 구하기
-- 문제 : <a href="https://www.acmicpc.net/problem/1753" target="_blank">링크</a>
+- 모든 도시의 쌍 (A, B)에 대해서 도시 A에서 B로 가는데 필요한 비용의 최솟값을 구하는 프로그램을 작성
+- 문제 : <a href="https://www.acmicpc.net/problem/11404" target="_blank">링크</a>
 
 ---
 
@@ -26,48 +26,44 @@
 # 풀이
 
 ## 풀이
-```python
-import sys
-
-
-def main():
-    input = sys.stdin.readline
-    print = sys.stdout.write
-
-    n = int(input())
-    m = int(input())
-    inf = 1e10
-    dis = [[0 if i == j else inf for j in range(n)] for i in range(n)]
-
-    for _ in range(m):
-        a, b, c = map(int, input().split())
-        if dis[a - 1][b - 1] > c:
-            dis[a - 1][b - 1] = c
-
-    for m in range(n):
-        for s in range(n):
-            if s == m or dis[s][m] == inf: # s 또는 m이 같거나, s에서 m으로 가는 비용이 무한이면 계산 안 함.
-                continue
-            for e in range(n):
-                if s == e or m == e: # s와 e 또는 m과 e가 같을 때 계산 안 함.
-                    continue
-                alt = dis[s][m] + dis[m][e]
-                if dis[s][e] > alt:
-                    dis[s][e] = alt
-
-    for line in dis:
-        for k in line:
-            if k == inf:
-                print('0 ')
-            else:
-                print(str(k) + ' ')
-        print('\n')
-
-
-if __name__ == '__main__':
-    main()
+```kotlin
+fun main() {
+    val n = i()
+    var bus = i()
+    val inf = 10_000_000
+    val cost = Array(n) { i -> IntArray(n) { j -> if (i == j) 0 else inf } }
+    var a: Int
+    var b: Int
+    var c: Int
+    while (bus -- > 0) {
+       a = i() - 1
+       b = i() - 1
+       c = i()
+       if (cost[a][b] > c) cost[a][b] = c
+    }
+    var alt: Int
+    for (m in 0 until n) {
+        for (s in 0 until n) {
+            if (s == m || cost[s][m] == inf) continue
+            for (e in 0 until n) {
+                if (s == e || m == e || cost[m][e] == inf) continue
+                alt = cost[s][m] + cost[m][e]
+                if (cost[s][e] > alt) cost[s][e] = alt
+            }
+        }
+    }
+    for (s in 0 until n) {
+        for (e in 0 until n) {
+            writeInt(cost[s][e].let { if (it == inf) 0 else it })
+            writeByte(ASCII_space)
+        }
+        writeByte(ASCII_n)
+    }
+    flushBuffer()
+}
 ```
 - 플로이드 워셜 알고리즘을 통해 3중 for문을 돌며 비용을 갱신하고, 결과를 출력한다.
+  - 중간점 m / 시작점 s /  종점 e 순으로 반복해야 한다.
 - 비용이 무한이면 0으로 바꿔서 출력한다.
 - i에서 j로 갈 수는 없는 경우 0으로 출력하라고 되어 있는 조건을 확인해보면
   - 비용이 무한이면 문제의 제약조건 대로 0으로 바꿔 출력한다.
