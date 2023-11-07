@@ -17,34 +17,53 @@
 # 풀이
 
 ## 풀이1: 문자열화하여 비교
-```python
-class Solution:
-    def isPalindrome(self, x: int) -> bool:
-        x = str(x)
-        return x == x[::-1]
+```kotlin
+class Solution {
+    fun isPalindrome(x: Int): Boolean {
+        if (x < 0) return false
+        else if (x == 0) return true
+        else {
+            val strX = x.toString()
+            var lt = 0
+            var rt = strX.lastIndex
+
+            while (lt < rt) {
+                if (strX[lt] != strX[rt]) {
+                    return false
+                } else {
+                    lt ++
+                    rt --
+                }
+            }
+            return true
+        }
+    }
+}
 ```
-- 문자열로 변환하고 슬라이싱을 통해 비교하기
+- 문자열로 변환하고 가운데 기준으로 비교하기
 - 하지만 문제 조건에서 '문자열로 바꾸지 않고 풀 수 있는가?'라는 추가 조건이 있으므로 조건에 위배된다.
-- 64ms 정도 소요된다.
 
 ## 풀이2: 나머지 연산
-```python
-class Solution:
-    def isPalindrome(self, x: int) -> bool:
-        if x < 0 or (x % 10 == 0 and x != 0):
-            return False
-
-        reversed_x = 0
-        while x > reversed_x:
-            reversed_x = reversed_x * 10 + x % 10
-            x //= 10
-
-        return x == reversed_x or x == reversed_x // 10
+```kotlin
+class Solution {
+    fun isPalindrome(x: Int): Boolean {
+        if (x == 0) return true
+        if (x < 0 || x % 10 == 0) return false
+        var tmp = x
+        var reversed = 0
+        while (tmp > reversed) {
+            reversed *= 10
+            reversed += (tmp % 10)
+            tmp /= 10
+        }
+        return reversed == tmp || reversed/10 == tmp
+    }
+}
 ```
-- 음수이거나, 오른쪽 끝이 0인데 시작이 0이 아닌 경우는 False 리턴
+- 0이면 true 리턴
+- 음수이거나, 오른쪽 끝이 0인 양수는 False 리턴
 - 숫자를 10으로 나눠가면서 뒤집은 숫자를 구한다.
 - 뒤집은 숫자와 원래 숫자가 완전히 같은 경우도 있지만(True), 자릿수가 홀수개인 경우 reversed_x에 숫자가 하나 더 붙는다. 이 숫자는 가운데 숫자이고
 의미가 없으므로 10으로 다시 나눠 제거한다.
-- 69ms 정도 소요된다.
 
 ---
