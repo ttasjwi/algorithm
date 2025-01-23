@@ -1,19 +1,23 @@
-# Programmers 120807 : 숫자 비교하기
+# 문제
+- 플랫폼 : 프로그래머스
+- 번호 : 120807
+- 제목 : 숫자 비교하기
 - 난이도 : Level 0
-- 두 수가 같으면 1 다르면 -1을 retrun하도록 solution 함수를 완성하라.
-- 문제 : [링크](https://school.programmers.co.kr/learn/courses/30/lessons/120807)
+- 두 수의 값이 같은지 비교하기
+- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/120807" target="_blank">링크</a>
 
 ---
 
-## 풀이
-```java
-public class Solution {
-    public int solution(int num1, int num2) {
-        return (num1 == num2)
-                ? 1
-                : -1;
-    }
-}
+# 필요 지식
+- 없음
+
+---
+
+# 풀이
+```python
+def solution(num1, num2):
+    return  1 if num1 == num2 else -1
 ```
 
 ---
+
