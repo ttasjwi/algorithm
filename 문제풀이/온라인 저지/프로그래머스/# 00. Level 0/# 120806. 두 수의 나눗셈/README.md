@@ -1,21 +1,23 @@
-# Programmers 120806 : 두 수의 나눗셈
-
+# 문제
+- 플랫폼 : 프로그래머스
+- 번호 : 120806
+- 제목 : 두 수의 나눗셈
 - 난이도 : Level 0
-- 정수 num1과 num2가 매개변수로 주어질 때, num1을 num2로 나눈 값에 1,000을 곱한 후
-정수 부분을 return 하도록 soltuion 함수를 완성하라.
-- 문제 : [링크](https://school.programmers.co.kr/learn/courses/30/lessons/120806)
+- 나누기
+- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/120806" target="_blank">링크</a>
 
 ---
 
-## 풀이
-```java
-public class Solution {
-    public int solution(int num1, int num2) {
-        double answer = (double) num1 / num2;
-        answer *= 1000;
-        return (int) answer;
-    }
-}
+# 필요 지식
+- 없음
+
+---
+
+# 풀이
+```python
+def solution(num1, num2):
+    return int(num1/num2 * 1000)
 ```
+- 나누고 1000을 곱한 뒤 int 함수를 통해 정수화
 
 ---
