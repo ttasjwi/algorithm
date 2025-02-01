@@ -9,23 +9,14 @@
 ---
 
 # 필요 지식
-- 조건문
+- 수학
 
 ---
 
 # 풀이
 ```python
 def solution(num):
-    return 'Odd' if (num % 2) else 'Even'
-```
-```java
-class Solution {
-    public String solution(int num) {
-        return (num%2 ==0)
-                ? "Even"
-                : "Odd";
-    }
-}
+    return "Odd" if num%2 else "Even"
 ```
 
 ---
