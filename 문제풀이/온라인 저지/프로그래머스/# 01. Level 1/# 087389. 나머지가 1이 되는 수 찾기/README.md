@@ -9,18 +9,16 @@
 ---
 
 # 필요 지식
-- 나머지 연산
+- 수학
 
 ---
 
 # 풀이
 ```python
 def solution(n):
-    x = 1
-    while n%x !=1:
-        x += 1
-        
-    return x
+    for x in range(1, n + 1):
+        if n % x == 1:
+            return x
 ```
 - 1부터 순서대로 증가시켜가며 나눠보고 나머지가 1이면 바로 반복을 탈출하여, x를 반환한다.
 
