@@ -1,33 +1,24 @@
-# Programmers 120831 : 짝수의 합
+# 문제
+- 플랫폼 : 프로그래머스
+- 번호 : 120831
+- 제목 : 짝수의 합
 - 난이도 : Level 0
-- n이하의 짝수를 모두 더한 값을 return
-- 문제 : [링크](https://school.programmers.co.kr/learn/courses/30/lessons/120831)
+- n 이하 모든 짝수의 합
+- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/120831" target="_blank">링크</a>
 
 ---
 
-## 풀이1
-```java
-public class Solution1 {
+# 필요 지식
+- 없음
 
-    public int solution(int n) {
-        int sum = 0;
-        for (int i=2; i<=n; i+=2) {
-            sum += i;
-        }
-        return sum;
-    }
-}
-```
-- 반복문
+---
 
-## 풀이2
-```java
-    public int solution(int n) {
-        return IntStream.rangeClosed(1,n)
-                .filter(number -> number%2==0)
-                .sum();
-    }
+# 풀이
+```python
+def solution(n):
+    return sum(range(2, n + 1, 2))
 ```
-- Stream
+- sum 함수에는 iterable 을 전달할 수 있다.
+- 2,4,6, ... n + 1 (미포함) 까지 2씩 증가하면서 반복하게 하면 된다.
 
 ---
