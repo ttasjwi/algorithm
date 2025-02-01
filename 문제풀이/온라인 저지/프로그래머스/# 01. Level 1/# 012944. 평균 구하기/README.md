@@ -9,18 +9,14 @@
 ---
 
 # 필요 지식
-- 단순 사칙 연산
+- 수학
 
 ---
 
 # 풀이
 ```python
-from typing import List
-
-
-def solution(arr: List[int]):
-    return sum(arr) / len(arr)
-
+def solution(arr):
+    return sum(arr)/len(arr)
 ```
 - sum 함수로 배열의 요소 합을 구하고 len으로 나눈다.
 

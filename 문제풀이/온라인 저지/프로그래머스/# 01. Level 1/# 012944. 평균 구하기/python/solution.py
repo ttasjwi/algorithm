@@ -1,6 +1,2 @@
-from typing import List
-
-
-def solution(arr: List[int]):
-    return sum(arr) / len(arr)
-
+def solution(arr):
+    return sum(arr)/len(arr)
