@@ -1,12 +1,11 @@
-from math import sqrt
-
+import math
 
 def solution(n):
-    answer = 0
-    for i in range(1, int(sqrt(n)) + 1):
-        if n%i == 0:
-            answer += i
-            if i != n//i:
-                answer += n//i
-
-    return answer
+    sum = 0
+    for i in range(1, int(math.sqrt(n)) + 1):
+        q, r = divmod(n, i)
+        if r == 0:
+            sum += i
+            if q != i:
+                sum += q
+    return sum
