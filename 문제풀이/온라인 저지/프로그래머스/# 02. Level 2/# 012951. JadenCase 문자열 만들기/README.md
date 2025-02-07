@@ -14,41 +14,25 @@
 ---
 
 # 풀이
-
-## 풀이1: 반복문
-```kotlin
-class Solution {
-    fun solution(s: String): String {
-        var isStartChar = true
-        val sb = StringBuilder()
-        for (i in s.indices) {
-            if (s[i] == ' ') {
-                sb.append(s[i])
-                isStartChar = true
-            } else if (isStartChar) {
-                sb.append(s[i].uppercaseChar())
-                isStartChar = false
-            } else {
-                sb.append(s[i].lowercaseChar())
-            }
-        }
-        return sb.toString()
-    }
-}
+```python
+def solution(s):
+    result = []
+    is_before_char_space = True
+    for i in range(len(s)):
+        if s[i].isspace():
+            is_before_char_space = True
+            result.append(s[i])
+        else:
+            if is_before_char_space:
+                result.append(s[i].upper())
+                is_before_char_space = False
+            else:
+                result.append(s[i].lower())
+    return ''.join(result)
 ```
-- StringBuilder에 순서대로 문자를 수집한다.
-- 단어의 시작점임을 구분하기 위해 isStartChar를 사용한다.
-- 공백문자를 만나면 isStartChar를 true로 초기화한다.
-- isStartChar가 true이면 첫문자이므로 대문자화한다. 그리고 isStartChar를 false로 변경한다.
-- isStartChar가 false이면 중간문자이므로 소문자화한다.
-
-## 풀이2: 고차함수
-```kotlin
-class Solution2 {
-    fun solution(s: String) = s.lowercase().split(' ').map { it.capitalize() }.joinToString(" ")
-}
-```
-- 이 방식을 쓰면 좀 더 간편하게 문제를 해결할 수 있긴하다.
-- 하지만 1번 방식은 0.1ms 로 해결할 수 있지만 2번 방식은 10ms 넘게 걸린다.
+- 현재 문자가 공백이면 'is_before_char_space' 플래그를 True 로 하고, result 에 삽입
+- 현재 문자가 공백이 아니면
+  - 이전 문자가 공백이면, 대문자화해서 삽입 후 플래그를 False로 변경
+  - 이전 문자가 공백이 아니면, 소문자화해서 삽입한다.
 
 ---
