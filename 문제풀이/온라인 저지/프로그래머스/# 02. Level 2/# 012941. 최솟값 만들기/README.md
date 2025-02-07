@@ -9,13 +9,28 @@
 ---
 
 # 필요 지식
-- 수학
+- 정렬
 
 ---
 
 # 풀이
 ```python
+def solution(A,B):
+    # 오름차순 / 내림차순 정렬
+    A.sort()
+    B.sort(reverse=True)
+
+    # 모두 합하기
+    sum = 0
+    for i in range(len(A)):
+        sum += A[i] * B[i]
+    return sum
+```
+```python
+# zip 함수를 사용한 표현
 def solution(a, b):
     return sum([x * y for x, y in zip(sorted(a), sorted(b, reverse=True))])
 ```
 - 한쪽은 내림차순, 한쪽은 오름차순으로 정렬하고 순서대로 곱한다.
+
+---
