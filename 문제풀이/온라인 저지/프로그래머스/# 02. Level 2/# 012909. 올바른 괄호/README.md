@@ -18,14 +18,16 @@
 def solution(s):
     stack = []
     for ch in s:
+        # 뽑은 문자가 여는 괄호면 스택에 삽입
         if ch == '(':
             stack.append(ch)
-        elif not stack or stack[-1] == ch:
-            return False
         else:
+            # 뽑은 문자가 닫는 괄호인데 스택이 비어져 있다면 올바르지 않음
+            if not stack:
+                return False
             stack.pop()
-    return False if stack else True
+    # 마지막에 스택이 비어져 있어야 함
+    return not len(stack)
 ```
-- 스택을 통해 문자열의 유효성을 검사함
 
 ---

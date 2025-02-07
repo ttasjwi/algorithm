@@ -3,8 +3,8 @@ def solution(s):
     for ch in s:
         if ch == '(':
             stack.append(ch)
-        elif not stack or stack[-1] == ch:
-            return False
         else:
+            if not stack:
+                return False
             stack.pop()
-    return False if stack else True
+    return not len(stack)
