@@ -14,34 +14,20 @@
 ---
 
 # 풀이
-```kotlin
-import java.util.*
+```python
+from collections import Counter
 
-class Solution {
-    fun solution(k: Int, tangerine: IntArray): Int {
-        val map = HashMap<Int, Int>()
-        for (t in tangerine) {
-            if (!map.containsKey(t)) {
-                map[t] = 1
-            } else {
-                map[t] = map[t]!! + 1
-            }
-        }
-        val arr = map.values.toIntArray()
-        Arrays.sort(arr)
-        var count = 0
-        var cur = k
-        for (i in arr.lastIndex downTo 0) {
-            count ++
-            cur -= arr[i]
-            if (cur <= 0) break
-        }
-        return count
-    }
-}
+def solution(k, tangerine):
+    counter = Counter(tangerine)
+    answer = 0
+    for value in sorted(counter.values(), reverse=True):
+        answer += 1
+        k -= value
+        if k <= 0:
+            return answer
 ```
-- map에 귤의 갯수들을 카운팅하고, 귤의 갯수들을 배열로 얻어온다.
-- 배열을 정렬하고, 귤의 갯수가 많은 것부터 우선적으로 박스에 담는다.
+- 귤의 갯수들을 카운팅하고, value 기준으로 내림차순 정렬한다.
+- 귤의 갯수가 많은 것부터 우선적으로 박스에 담는다.
   - 귤의 갯수가 많은 것을 우선적으로 담을 수록 귤의 크기 종류가 적어진다.
 
 ---
