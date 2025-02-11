@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 076502
-- 제목 : 괄호 회전하기
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/76502" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 스택
-- 문자열 처리
-
----
-
-# 풀이
-```python
 def solution(s):
     answer = 0
     pairs = {'{': '}', '(': ')','[': ']'}
@@ -28,7 +11,7 @@ def solution(s):
             # 여는 괄호이면 스택에 append
             if s[rt] in pairs:
                 stack.append(s[rt])
-                
+
             # 닫는 괄호이면
             else:
                 # 스택이 비어있지 않고, 스택 최상단에 위치한 것이 현재 문자의 반대 괄호이면
@@ -38,17 +21,15 @@ def solution(s):
                 else:
                     is_wrong = True
                     break
-            
+
             # rt 를 전진시키고, 길이로 나눈 나머지로 재할당한다. (이러면 끝 인덱스를 넘어도 순회한다.)
             rt = (rt + 1) % len(s)
-            
+
             # lt 와 rt 가 같아지면 순회가 끝난 것이다
             if lt == rt:
                 break
-        
+
         # 여태 올바르면서, stack 이 비어있지 않으면
         if not is_wrong and not stack:
             answer += 1
     return answer
-
-```
