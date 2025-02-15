@@ -3,7 +3,6 @@
 - 번호 : 064065
 - 제목 : 튜플
 - 난이도 : Level 2
-- 특정 튜플을 표현하는 집합이 담긴 문자열 s가 매개변수로 주어질 때, s가 표현하는 튜플을 배열에 담아 return
 - 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/64065" target="_blank">링크</a>
 
 ---
@@ -15,41 +14,27 @@
 ---
 
 # 풀이
-```kotlin
-class Solution {
+```python
+def solution(s):
+    result = []
+    num_set = set()
+    for num_list in sorted([list(map(int, x.split(','))) for x in s[2:-2].split('},{')], key=lambda x: len(x)):
+        for i, num in enumerate(num_list):
+            if num not in num_set:
+                result.append(num)
+                num_set.add(num)
+                break
 
-    fun solution(s: String): IntArray {
-        val items = ArrayList<ArrayList<Int>>()
-
-        var idx = -1
-        var v = 0
-        for (i in 1..s.length - 2) {
-            if (s[i] in '0'..'9') {
-                v = v * 10 + s[i].toInt() - 48
-            } else {
-                if (s[i] == '{') {
-                    idx++
-                    items.add(ArrayList())
-                } else if ((s[i] == ',' || s[i] == '}') && v != 0) {
-                    items[idx].add(v)
-                    v = 0
-                }
-            }
-        }
-        items.sortBy { it.size }
-
-        val set = LinkedHashSet<Int>()
-        for (arr in items) {
-            for (e in arr) {
-                set += e
-            }
-        }
-        return set.toIntArray()
-    }
-
-}
+    return result
 ```
-- 원소가 i개인 배열에서는 반드시 튜플의 i번째 요소에 해당하는 요소가 출연한다.
-- 따라서 문자열을 파싱하여 집합단위로 끊되, 리스트의 크기 순으로 정렬해야한다.
+- `s[2:-2]` : 먼저 문자열 양 끝의 `{{`, `}}` 를 제거한다.
+  - 이렇게 하면 `2},{2,1},...},{2,1,3,4` 꼴이 된다.
+- 이를 다시 `},{` 을 기준으로 구분한다.
+  - 이렇게 하면 `2 / 2,1 / 2,1,3 / 2,1,3,4` 꼴이 된다.
+- 각각을 다시 , 로 구분 한뒤, 모두 숫자화 시킨 것을 list 로 구성한다.
+  - `[2], [2,1], [2,1,3], [2,1,3,4]`
+- 이들을 배열 길이 순으로 오름차순 정렬한다.
+- 배열은 원소수가 적은 순으로 구성되는데, 이 상태에서 원소수가 작은 리스트부터 순서대로 num_set 에 등장한 숫자를 넣고, num_set 에 포함되지 않은
+숫자를 result 에 삽입한다. (포함되지 않은 숫자가 등장했다면 더 이상 그 리스트에서는 숫자를 삽입하지 않아도 되므로 그 부분은 탈출하는 식으로 최적화)
 
 ---
