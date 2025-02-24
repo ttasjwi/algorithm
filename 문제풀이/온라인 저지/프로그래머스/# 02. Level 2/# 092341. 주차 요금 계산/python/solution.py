@@ -1,22 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 092341
-- 제목 : 주차 요금 계산
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/92341" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 문자열 처리
-- 해시
-- 정렬
-- 구현
-
----
-
-# 풀이
-```python
 def solution(fees, records):
     basic_minute, basic_price, unit_minute, unit_price = fees
 
@@ -63,4 +44,3 @@ def solution(fees, records):
 
     # 차량별 청구요금 반환
     return [calculate_price(stay_minutes[car_number]) for car_number in sorted(stay_minutes.keys())]
-```
