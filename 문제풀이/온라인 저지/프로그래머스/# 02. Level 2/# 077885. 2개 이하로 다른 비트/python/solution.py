@@ -1,26 +1,9 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 077885
-- 제목 : 2개 이하로 다른 비트
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/77885" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 비트 마스킹
-- 문자열 처리
-
----
-
-# 풀이
-```python
 def solution(numbers):
     return [convert(number) for number in numbers]
 
 
 def convert(number):
-    
+
     # 홀수인 경우
     # xxxxxxx1 로 끝난다. 이 경우 오른쪽 끝에서부터 가장 먼저 발견되는 0의 위치를 기준으로 다음 자리 1로 증가시키고 그 뒤 숫자를 0으로 만들면 된다.
     # 예) 1101 -> 1110 (비트 2개 바꾸기)
@@ -34,9 +17,8 @@ def convert(number):
         bit_arr[right_zero_idx + 1] = '0' # right_zero_idx + 1 은 '0' 으로 바꾸기
 
         return int(''.join(bit_arr), 2)
-    
-    # 짝수인 경우 : xxxx0 으로 끝나는데, 
+
+    # 짝수인 경우 : xxxx0 으로 끝나는데,
     # 뒤의 0을 1로 바꾸기만 하면 됨. 즉 값을 1 증가시키기만 하면 된다.
     else:
         return number + 1
-```
