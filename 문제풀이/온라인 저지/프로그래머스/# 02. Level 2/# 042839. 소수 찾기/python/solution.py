@@ -1,21 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 042839
-- 제목 : 소수 찾기
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42839" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 수학
-- 에라토스테네스의 체
-- DFS
-
----
-
-# 풀이
-```python
 from math import sqrt
 
 
@@ -52,9 +34,3 @@ def solution(numbers):
                 if j in s:
                     s.remove(j)
     return len(s)
-```
-- 숫자들을 전부 순회하면서 조합들을 전부 구하고 set 에 추가
-- set 에서 가장 큰 숫자를 기준으로 하여 에라토스테네스의 체 적용 -> 소수만 남기고 필러팅
-- 남은 숫자의 갯수를 반환
-
----
