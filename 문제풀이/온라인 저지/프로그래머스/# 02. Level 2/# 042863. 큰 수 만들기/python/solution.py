@@ -1,19 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 042863
-- 제목 : 큰 수 만들기
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42863" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 스택
-
----
-
-# 풀이
-```python
 def solution(number, k):
     stack = []
     for num in number:
@@ -29,4 +13,3 @@ def solution(number, k):
         stack.pop()
         k -= 1
     return ''.join(stack)
-```
