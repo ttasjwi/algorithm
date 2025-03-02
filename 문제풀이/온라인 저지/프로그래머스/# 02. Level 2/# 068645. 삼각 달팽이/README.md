@@ -3,7 +3,6 @@
 - 번호 : 068645
 - 제목 : 삼각 달팽이
 - 난이도 : Level 2
-- 달팽이 채우기를 진행한 후, 첫 행부터 마지막 행까지 모두 순서대로 합친 새로운 배열을 return
 - 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/68645" target="_blank">링크</a>
 
 ---
@@ -14,40 +13,44 @@
 ---
 
 # 풀이
-```kotlin
-class Solution {
-    fun solution(n: Int): IntArray {
-        val answer = IntArray((n * (n+1))shr 1)
-        var row = 0
-        var column = 1
-        fun idx(row:Int, column:Int) = ((row * (row - 1)) shr 1) + column - 1
-        var number = 1
-        var cnt = n
-        while (cnt > 0) {
-            repeat(cnt) {
-                row ++
-                answer[idx(row, column)] = number++
-            }
-            if (--cnt == 0) break
-            repeat(cnt) {
-                column ++
-                answer[idx(row, column)] = number++
-            }
-            if (--cnt == 0) break
-            repeat(cnt) {
-                row --
-                column --
-                answer[idx(row, column)] = number++
-            }
-            cnt --
-        }
-        return answer
-    }
-}
-```
-- 달팽이는 아래 방향으로 끝까지 가고, 그 다음은 오른쪽 방향으로 가고, 그 다음은 윗쪽 방향으로 끝까지 타고 올라간다.
-- 이를 좀 더 정확히 따져보면 처음에는 n번 아래방향으로 가고, 그 다음은 n-1번 오른쪽 방향으로 가고, 그 다음은 n-2번 윗쪽방향으로 끝까지 간다.
-- 이를 반복하다가 더 이상 이동할 수 없을 때, 횟수가 0이 될 때 멈춘다.
-- 문제를 풀 때는 행/열이 전달됐을 때 인덱스를 구하는 함수를 만들었고 좀 더 편리하게 풀 수 있었다.
+```python
+def solution(n):
+    # 최대 인덱스
+    answer = [0] * (n * (n + 1) // 2)
+    
+    # 왼쪽 아래, 오른쪽, 왼쪽 위 반복 순회
+    directions = [(1, 0), (0, 1), (-1, -1)]
+    
+    r = -1
+    c = 0
+    
+    # 숫자의 최대값
+    max_number = n * (n + 1) // 2
+    # 현재 숫자
+    number = 1
 
----
+    while number <= max_number:
+        
+        # 방향배열을 순서대로 탐색
+        for (dr, dc) in directions:
+            while number <= max_number:
+                nr, nc = r + dr, c + dc
+                n_idx = get_idx(nr, nc)
+                
+                # 방향대로 따라갔을 때, 다음 위치의 인덱스에 값이 채워져 있지 않으면
+                # 값을 채우고 방향 이동
+                if (0 <= nr < n) and (0 <= nc <= nr) and answer[n_idx] == 0:
+                    answer[n_idx] = number
+                    number += 1
+                    r, c = nr, nc
+                
+                # 갈 수 없는 위치이면 반복 멈추기
+                else:
+                    break
+    
+    return answer
+
+# r,c 가 주어졌을 때 배열에서의 인덱스를 구하는 함수
+def get_idx(r, c):
+    return r * (r + 1) // 2 + c
+```
