@@ -1,25 +1,9 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 155651
-- 제목 : 호텔 대실
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/155651" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 구현
-
----
-
-# 풀이
-```python
 def solution(book_time):
-    
+
     # 각 시각(분단위)별 필요한 방의 갯수
     room_counts = [0] * 1440
     max_room_count = -1 # 제일 많이 방이 필요한 시점의 방의 갯수
-    
+
     for time_arr in book_time:
         start_min, end_min = get_start_and_end_minute(time_arr)
         for i in range(start_min, end_min + 1):
@@ -43,4 +27,3 @@ def get_start_and_end_minute(time_arr):
 def get_minute(time_str):
     a, b = map(int, time_str.split(':'))
     return a * 60 + b
-```
