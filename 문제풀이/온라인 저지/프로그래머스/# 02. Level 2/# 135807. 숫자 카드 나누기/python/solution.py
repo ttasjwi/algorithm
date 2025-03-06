@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 135807
-- 제목 : 숫자 카드 나누기
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/135807" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 최대공약수
-- 수학
-
----
-
-# 풀이
-```python
 def solution(arrayA, arrayB):
     gcd_a = gcd_arr(arrayA)  # 배열 A 원소를 모두 나눌 수 있는 최대의 수(A 배열 최대공약수)
     gcd_b = gcd_arr(arrayB)  # 배열 B 원소를 모두 나눌 수 있는 최대의 수(B 배열 최대공약수)
@@ -25,7 +8,7 @@ def solution(arrayA, arrayB):
     # A 배열을 gcd_b 로 모두 나눌 수 있는지
     if cannot_divide(arrayA, gcd_b):
         result_a = gcd_b
-    
+
     # B 배열을 gcd_a 로 모두 나눌 수 있는 지
     if cannot_divide(arrayB, gcd_a):
         result_b = gcd_a
@@ -53,4 +36,3 @@ def gcd(a, b):
         a, b = b, a
     r = a % b
     return b if r == 0 else gcd(b, r)
-```
