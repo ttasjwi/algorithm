@@ -1,19 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 159993
-- 제목 : 미로 탈출
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/159993" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- BFS
-
----
-
-# 풀이
-```python
 from collections import deque
 
 directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
@@ -66,7 +50,3 @@ def solution(maps):
         return -1
 
     return cost1 + cost2
-```
-- 레버에 도달하는 최단 시간, 종점에 도갈하는 최단 시간을 각각 구해서 더하기
-
----
