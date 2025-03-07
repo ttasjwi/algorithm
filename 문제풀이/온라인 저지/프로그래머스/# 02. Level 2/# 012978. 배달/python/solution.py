@@ -1,32 +1,14 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 012978
-- 제목 : 배달
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/12978" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 최단거리
-- 다익스트라 알고리즘
-- 힙(Heap)
-
----
-
-# 풀이
-```python
 import heapq
 
 def solution(N, road, K):
-    
+
     # 그래프(인접 리스트)
     graph = {i: [] for i in range(1, N + 1)}
     for a, b, c in road:
         graph[a].append((b, c))
         graph[b].append((a, c))
     heap = []
-    
+
     # 힙에는 (각 노드별 도달 비용, 노드 번호) 를 삽입
     heapq.heappush(heap, (0, 1))
 
@@ -43,10 +25,10 @@ def solution(N, road, K):
             continue
 
         # 이 시점에 왔을 때 그 노드에 도달한 최소비용 확정
-        
+
         if costs[start] <= K:
             answer += 1
-        
+
         # 인접한 노드들을 확인하며 최소 도달 비용을 갱신시키는 가능성이 있는 지 확인
         # 가능성이 있다 판단되면 최소비용 갱신
         # 힙에 삽입 (노드 도달비용, 노드)
@@ -57,7 +39,3 @@ def solution(N, road, K):
                 heapq.heappush(heap, (alt, end))
 
     return answer
-```
-
-
----
