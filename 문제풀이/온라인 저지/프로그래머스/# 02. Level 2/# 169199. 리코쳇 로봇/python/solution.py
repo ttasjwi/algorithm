@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 169199
-- 제목 : 리코쳇 로봇
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/169199" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- BFS
-- 큐
-
----
-
-# 풀이
-```python
 from collections import deque
 
 directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
@@ -63,4 +46,3 @@ def solution(board):
                     check[nr][nc] = True
                     queue.append((nr, nc))
     return -1
-```
