@@ -1,19 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 077485
-- 제목 : 행렬 테두리 회전하기
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/77485" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 구현
-
----
-
-# 풀이
-```python
 def solution(rows, columns, queries):
     answer = []
     board = [[(r - 1) * columns + c for c in range(1, columns + 1)] for r in range(1, rows + 1)]
@@ -47,4 +31,3 @@ def solution(rows, columns, queries):
     for x1, y1, x2, y2 in queries:
         answer.append(rotate(board, x1 - 1, y1 - 1, x2 - 1, y2 - 1))
     return answer
-```
