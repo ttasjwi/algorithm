@@ -1,19 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 142085
-- 제목 : 디펜스 게임
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/142085" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 힙
-
----
-
-# 풀이
-```python
 from heapq import heappush, heappop
 
 
@@ -35,6 +19,4 @@ def solution(n, k, enemy):
                 # 무적권이 없다면, 라운드 값을 반환
                 return i
     return len(enemy)  # 끝까지 살았으면 enemy 배열 길이를 반환
-```
 
----
