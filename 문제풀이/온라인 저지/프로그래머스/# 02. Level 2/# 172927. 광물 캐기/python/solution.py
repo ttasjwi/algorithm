@@ -1,19 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 172927
-- 제목 : 광물 캐기
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/172927" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- DFS
-
----
-
-# 풀이
-```python
 def solution(picks, minerals):
     # 최소 피로도
     min_cost = 25 * 50 + 1
@@ -33,7 +17,7 @@ def solution(picks, minerals):
 
         # 가진 곡괭이들을 확인
         for i in range(3):
-            
+
             # 곡괭이를 쓸 수 있다면 확인
             if picks[i] > 0:
                 cur = idx
@@ -43,7 +27,7 @@ def solution(picks, minerals):
                     next_cost += costs[i][minerals[cur]]
                     cur += 1
                     count -= 1
-                    
+
                 # 그렇게 누적한 비용이 최소 비용보다 적으면 더 탐색할 가치가 있으므로 탐색
                 # 최소 비용 이상일 경우, 더 탐색할 가치가 없으므로 종료
                 if next_cost < min_cost:
@@ -51,4 +35,3 @@ def solution(picks, minerals):
 
     dfs(picks[:], 0, 0)
     return min_cost
-```
