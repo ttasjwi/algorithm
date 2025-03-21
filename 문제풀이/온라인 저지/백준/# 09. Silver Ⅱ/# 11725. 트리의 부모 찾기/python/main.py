@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 11725
-- 제목 : 트리의 부모 찾기
-- 난이도 : Silver 2
-- 문제 : <a href="https://www.acmicpc.net/problem/11725" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 트리
-- DFS
-
----
-
-# 풀이
-```python
 import io, os, sys
 
 print = sys.stdout.write
@@ -39,10 +22,3 @@ while stack:
             stack.append(near_node)
 
 print('\n'.join(map(str, parents[2:])))
-```
-- 배열로 스택을 구현했다.
-- 1번 노드를 시작으로 하여 DFS를 수행하였고, 방문할 때마다 직속 부모를 배열에 기록한다.
-- 이 때 부모가 존재하면 방문처리로 간주하기 때문에 한 번 방문한 노드에 다시 방문하지 않게 된다.
-- 모든 간선의 갯수가 N-1개 이므로 시간 복잡도는 O(N)이 된다
-
----
