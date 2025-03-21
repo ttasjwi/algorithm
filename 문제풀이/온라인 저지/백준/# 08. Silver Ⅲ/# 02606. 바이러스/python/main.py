@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 백준
-- 번호 : 02606
-- 제목 : 바이러스
-- 난이도 : Silver 3
-- 문제 : <a href="https://www.acmicpc.net/problem/2606" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- DFS
-- BFS
-
----
-
-# 풀이
-```python
 import sys
 
 input = sys.stdin.readline
@@ -39,4 +22,3 @@ while stack:
             answer += 1
             stack.append(near_node)
 print(answer)
-```
