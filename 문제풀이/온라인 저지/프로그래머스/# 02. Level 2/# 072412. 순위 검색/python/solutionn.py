@@ -1,20 +1,3 @@
-# 문제
-- 플랫폼 : 프로그래머스
-- 번호 : 072412
-- 제목 : 순위 검색
-- 난이도 : Level 2
-- 문제 : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/72412" target="_blank">링크</a>
-
----
-
-# 필요 지식
-- 해시
-- 이분탐색
-
----
-
-# 풀이
-```python
 def solution(info, query):
     # 딕셔너리 초기화 : 가능한 모든 조합
     dic = init_dic()
@@ -73,4 +56,3 @@ def binary_search(arr, score):
         return 0
     else:
         return len(arr) - min_idx
-```
