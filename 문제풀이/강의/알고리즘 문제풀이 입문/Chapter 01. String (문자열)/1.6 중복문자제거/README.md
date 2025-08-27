@@ -14,16 +14,16 @@
 
 # Python
 ```python
-char_set = set()
+s = set()
 answer = []
 for ch in input():
-    if ch not in char_set:
+    if ch not in s:
         answer.append(ch)
-        char_set.add(ch)
+        s.add(ch)
 print(''.join(answer))
 ```
-- set을 별도로 만들고, 한번 등장한 단어를 여기에 삽입한다.
-- 한번도 등장하지 않은 단어만 answer에 append 한다.
+- set을 별도로 만들고, 한번 등장한 문자를 여기에 삽입한다.
+- 한번도 등장하지 않은 문자만 answer에 append 한다.
 - answer를 join해서 출력
 
 # Java
