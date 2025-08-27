@@ -1,1 +1,4 @@
-print(input().lower().count(input().lower()))
+word = input().lower()
+ch = input().lower()
+answer = word.count(ch)
+print(answer)

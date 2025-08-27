@@ -51,7 +51,10 @@
 
 ## Python
 ```python
-print(input().lower().count(input().lower()))
+word = input().lower()
+ch = input().lower()
+answer = word.count(ch)
+print(answer)
 ```
 - lower로 소문자화
 - 문자열의 count 함수로 등장횟수 세기
