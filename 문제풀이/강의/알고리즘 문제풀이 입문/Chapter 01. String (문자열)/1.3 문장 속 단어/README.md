@@ -16,19 +16,24 @@
 ## Python
 ### 풀이1
 ```python
-max = -1
-max_str = ''
-for word in input().split():
-    if len(word) > max:
-        max = len(word)
-        max_str = word
-print(max_str, end='')
+arr = input().split()
+
+answer = ''
+max_len = -1
+
+for word in arr:
+    len_word = len(word)
+    if len_word > max_len:
+        answer = word
+        max_len = len_word
+print(answer)
 ```
 - 반복문 돌면서, 길이가 더 긴 것으로 계속 갱신
 
 ### 풀이2
 ```python
-print(max(input().split(), key=len))
+max_length_word = max(input().split(), key=len)
+print(max_length_word)
 ```
 - max 함수로도 찾을 수 있는데 이 경우, 우선순위가 같다면 먼저 발견된 것을 반환한다.
 
