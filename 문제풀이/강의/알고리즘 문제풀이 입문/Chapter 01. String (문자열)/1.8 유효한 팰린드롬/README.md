@@ -15,6 +15,10 @@
 # 풀이
 
 ## Python
+
+
+### 풀이1: 정규 표현식
+
 ```python
 import re
 
@@ -25,6 +29,14 @@ print(answer, end='')
 ```
 - `re.sub` : 정규표현식을 통해 문자열 변환
 - 문자열 슬라이싱 활용
+
+### 풀이2: 투 포인터
+```python
+arr = [ch for ch in input().lower() if ch.isalpha()]
+print('YES' if arr == arr[::-1] else 'NO', end='')
+```
+- 입력을 소문자화하고, 알파벳인지 필터링하여, 알파벳인 것들만 리스트화
+- 위의 리스트를, 역순 리스트화한 결과가 같은지 비교하고, 같으면 'YES' 틀리면 'NO' 출력
 
 ## Java
 ```java
