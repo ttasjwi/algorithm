@@ -13,12 +13,9 @@
 # 풀이
 ## Python
 ```python
-from sys import stdin
-
-input = stdin.readline
-
-answer = '\n'.join(input().rstrip()[::-1] for _ in range(int(input())))
-print(answer, end='')
+n = int(input())
+answer = [input()[::-1] for i in range(n)]
+print('\n'.join(answer), end='')
 ```
 - `문자열[::-1]` 을 통해 뒤집은 문자열 얻기
 - 출력

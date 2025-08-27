@@ -1,6 +1,3 @@
-from sys import stdin
-
-input = stdin.readline
-
-answer = '\n'.join(input().rstrip()[::-1] for _ in range(int(input())))
-print(answer, end='')
+n = int(input())
+answer = [input()[::-1] for i in range(n)]
+print('\n'.join(answer), end='')
