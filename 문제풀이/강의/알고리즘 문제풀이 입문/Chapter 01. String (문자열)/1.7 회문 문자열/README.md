@@ -13,12 +13,30 @@
 
 # 풀이
 ## Python
+### 풀이1: 문자열 슬라이싱 사용
 ```python
 s = input().lower()
 answer = 'YES' if s == s[::-1] else 'NO'
 print(answer, end='')
 ```
 - 문자열 슬라이싱 활용하여 뒤집은 문자열 비교
+
+### 풀이2: 투 포인터 활용
+```python
+word = input().lower()
+lt = 0
+rt = len(word) - 1
+
+flag = True
+while lt < rt:
+    if word[lt] != word[rt]:
+        flag = False
+        break
+    lt += 1
+    rt -= 1
+print('YES' if flag else 'NO', end='')
+```
+- 양쪽에 포인터를 두고 전진시켜가면서 비교
 
 ## Java
 ### 풀이1. 양끝을 순서대로 비교
