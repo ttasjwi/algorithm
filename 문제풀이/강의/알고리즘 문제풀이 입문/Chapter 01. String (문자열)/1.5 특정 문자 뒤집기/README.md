@@ -30,7 +30,6 @@ while lt < rt:
         word[lt], word[rt] = word[rt], word[lt]
         lt += 1
         rt -= 1
-
 print(''.join(word), end='')
 ```
 - lt, rt 포인터를 두고 좌우로 이동하면서 판단

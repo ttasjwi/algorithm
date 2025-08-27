@@ -11,5 +11,4 @@ while lt < rt:
         word[lt], word[rt] = word[rt], word[lt]
         lt += 1
         rt -= 1
-
 print(''.join(word), end='')
