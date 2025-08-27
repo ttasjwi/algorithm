@@ -13,7 +13,6 @@
 ---
 
 # Python
-
 ## 풀이1 : 정규 표현식 사용
 ```python
 import re
@@ -24,7 +23,8 @@ print(answer, end='')
 
 ## 풀이2 : 리스트 컴프리헨션 사용
 ```python
-answer = int(''.join(ch for ch in input() if ch.isnumeric()))
+arr = [ch for ch in input() if ch.isnumeric()]
+answer = int(''.join(arr))
 print(answer, end='')
 ```
 
