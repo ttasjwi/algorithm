@@ -1,8 +1,9 @@
 answer = []
 for ch in input():
     code = ord(ch)
-    if 65 <= code <= 90:
-        answer.append(chr(code + 32))
+    if code >= 97:
+        code -= 32
     else:
-        answer.append(chr(code - 32))
+        code += 32
+    answer.append(chr(code))
 print(''.join(answer))

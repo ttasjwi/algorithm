@@ -21,14 +21,15 @@ print(input().swapcase())
 answer = []
 for ch in input():
     code = ord(ch)
-    if 65 <= code <= 90:
-        answer.append(chr(code + 32))
+    if code >= 97:
+        code -= 32
     else:
-        answer.append(chr(code - 32))
+        code += 32
+    answer.append(chr(code))
 print(''.join(answer))
 ```
 - 방법 1 : `swapcase()`로 대소문자 변환
-- 방법 2 : ord로 아스키 코드 값을 가져와서, 대문자 범위이면 32를 더하고, 아니면 32를 빼서 변환
+- 방법 2 : ord로 아스키 코드 값을 가져와서, 소문자 범위이면 32를 빼고, 아니면 32를 빼서 변환
 
 ## Java
 ```java
