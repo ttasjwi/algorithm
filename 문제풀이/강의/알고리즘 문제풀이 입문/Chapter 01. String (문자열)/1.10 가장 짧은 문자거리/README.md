@@ -60,4 +60,33 @@ print(' '.join(map(str, dis)), end='')
 - 오른쪽 방향에서 최소 거리 갱신
 - 결과 출력
 
+## 풀이3: BFS
+```python
+from collections import deque
+
+s, t = input().split()
+costs = [100] * len(s)
+q = deque()
+for i, ch in enumerate(s):
+    if ch == t:
+        q.append(i)
+
+cost = -1
+while q:
+    cost += 1
+    size = len(q)
+    for _ in range(size):
+        i = q.popleft()
+        if costs[i] <= cost:
+            continue
+        costs[i] = cost
+        if i-1 >= 0:
+            q.append(i-1)
+        if i+1 < len(s):
+            q.append(i+1)
+print(*costs, end='')
+```
+- 우선 배열을 전부 순회해서, t 와 같은 문자의 인덱스를 큐에 삽입
+- BFS 를 통해 각 지점의 최단거리를 갱신
+
 ---
