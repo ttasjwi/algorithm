@@ -1,43 +1,49 @@
+# 문제
+- 플랫폼 : 인프런 알고리즘 문제풀이 입문
+- 번호 : 3.1
+- 제목 : 두 배열 합치기
+- 오름차순 정렬된 배열을 합치기
 
-# 3.1 두 배열 합치기
-
-- 분류 : 투 포인터(Two Pointers)
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 3.1)
-
----
-
-## 알고리즘 개요
-- 두 배열을 덧붙인 뒤 정렬한다면 퀵 정렬 기준 `o(nlogn)`의 시간복잡도를 가진다.
-- 정렬된 두 배열을 정렬할 때는 투 포인터 알고리즘을 사용하면 `o(n)`의 시간복잡도로 정렬을 할 수 있다.
 
 ---
 
-## 풀이 : 투 포인터 사용
-```java
-    private static String solution(int[] numbers1, int n, int[] numbers2, int m) {
-        StringBuilder sb = new StringBuilder();
-        int p1=0; //numbers1의 포인터
-        int p2=0; //numbers2의 포인터
+# 필요 지식
+- 투 포인터
 
-        while(p1 < n || p2 < m) {
-            if (p1 == n) {
-                sb.append(numbers2[p2++]).append(' ');
-                continue;
-            }
-            if (p2 == m) {
-                sb.append(numbers1[p1++]).append(' ');
-                continue;
-            }
-            if (numbers1[p1] <= numbers2[p2]) {
-                sb.append(numbers1[p1++]).append(' ');
-            } else {
-                sb.append(numbers2[p2++]).append(' ');
-            }
-        }
-        return sb.toString();
-    }
+---
+
+## 풀이
+```python
+input()
+arr1 = [int(x) for x in input().split()]
+input()
+arr2 = [int(x) for x in input().split()]
+
+p1 = 0
+p2 = 0
+result = []
+while p1 < len(arr1) and p2 < len(arr2):
+    if arr1[p1] <= arr2[p2]:
+        result.append(arr1[p1])
+        p1 += 1
+    else:
+        result.append(arr2[p2])
+        p2 += 1
+
+while p1 < len(arr1):
+    result.append(arr1[p1])
+    p1 += 1
+while p2 < len(arr2):
+    result.append(arr2[p2])
+    p2 += 1
+print(*result, end = '')
 ```
-- 배열1의 포인터, 배열2의 포인터를 둔다.
-- 포인터가 위치한 곳의 값을 비교 후 더 작은 값을 StringBuilder에 덧붙인 뒤, 포인터를 다음으로 이동시킨다.
+- 각 배열에 포인터를 두고 비교하고, 더 작은 것을 순서대로 삽입하면서 각각 포인터 전진.
+- 최종적으로 어느 반대쪽의 요소는 남아있을 수 있므로 각각 비울 것.
 
 ---
+
+# 참고: 병합정렬 아이디어 설명
+- 정렬된 배열은 투 포인터를 사용하면 O(N) 시간복잡도로 정렬 가능하다.
+- 그런데, 임의의 배열을 쪼개고 쪼갠뒤 각각을 '정렬된 배열'들로 보고 오름차순 정렬을 시킨뒤 이들을 합쳐나가길 반복한다면?
+- 이렇게 되면, 최종적으로는 O(NlogN) 시간복잡도로, 배열을 정렬할 수 있다.
