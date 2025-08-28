@@ -12,6 +12,8 @@
 ---
 
 ## 풀이
+
+## 풀이1: 이전 최댓값을 변수에 기록하면서 for문 쓰는 방식
 ```python
 input()
 nums = list(map(int, input().split()))
@@ -24,6 +26,26 @@ for i in range(1, len(nums)):
 print(cnt, end='')
 ```
 - 값을 1번 인덱스부터 순서대로 비교하고, 이전 최댓값보다 클 때 cnt를 증가시키고 최댓값을 갱신한다.
+
+## 풀이2: 투 포인터
+```python
+n = int(input())
+nums = list(map(int, input().split()))
+answer = 1
+lt = 0
+rt = 1
+
+while rt < len(nums):
+    if nums[lt] < nums[rt]:
+        lt = rt
+        rt = lt + 1
+        answer += 1
+    else:
+        rt += 1
+print(answer)
+```
+- 전체적인 흐름은 1과 같은데 while 문을 통해 처리하는 차이가 있음
+
 
 ### 참고
 ```python
