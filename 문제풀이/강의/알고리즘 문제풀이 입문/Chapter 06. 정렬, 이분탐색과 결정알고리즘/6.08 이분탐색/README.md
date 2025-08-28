@@ -1,30 +1,29 @@
-# 6.08 이분탐색
-
-- 분류 : 이분탐색
-- 문제 : (자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 - 6.08)
+# 문제
+- 플랫폼 : 인프런 알고리즘 문제풀이 입문
+- 번호 : 6.8
+- 제목 : 이분탐색
+- 정렬 후, 몇 번째 위치에 해당 숫자가 있는 지 탐색하기
 
 ---
 
 ## 풀이
-### 입출력
-```java
-    private static int solution(int[] numbers, int n, int m) {
-        Arrays.sort(numbers);
-        int lt = 0;
-        int rt = n-1;
-        int mid = -1;
-        while (lt<=rt) {
-            mid = (lt+rt)/2;
-            if (numbers[mid] == m) {
-                break;
-            } else if (numbers[mid] < m) {
-                lt = mid + 1;
-            } else {
-                rt = mid - 1;
-            }
-        }
-        return mid + 1;
-    }
+```python
+n, m = map(int, input().split())
+nums = sorted(list(map(int, input().split())))
+
+lt = 0
+rt = len(nums) - 1
+mid = -1
+while lt <= rt:
+    mid = (lt + rt) >> 1
+    if nums[mid] < m:
+        lt = mid + 1
+    elif nums[mid] > m:
+        rt = mid - 1
+    else:
+        break
+answer = mid + 1
+print(answer, end = '')
 ```
 - 이분탐색을 하기 위해서 정렬
 - lt : 탐색 시작
