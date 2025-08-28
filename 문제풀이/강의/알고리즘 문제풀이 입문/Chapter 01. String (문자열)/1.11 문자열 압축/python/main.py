@@ -1,15 +1,14 @@
-s = input()
-answer = []
-
+word = input()
 lt = 0
 rt = 0
-while lt < len(s):
-    cnt = 0
-    answer.append(s[lt])
-    while rt < len(s) and s[lt] == s[rt]:
+result = []
+while rt < len(word) and word[lt] == word[rt]:
+    count = 0
+    while rt < len(word) and word[lt] == word[rt]:
+        count += 1
         rt += 1
-        cnt += 1
-    if cnt > 1:
-        answer.append(str(cnt))
+    result.append(word[lt])
+    if count > 1:
+        result.append(str(count))
     lt = rt
-print(''.join(answer), end='')
+print(''.join(result), end='')
