@@ -1,4 +1,21 @@
-input()
-s = input().rstrip().replace('#', '1').replace('*', '0')
-answer = ''.join(chr(int(s[i:i+7], 2)) for i in range(0, len(s), 7))
-print(answer, end='')
+def change_to_bit(s):
+    result = []
+    for char in s:
+        if char == '#':
+            result.append('1')
+        else:
+            result.append('0')
+    return ''.join(result)
+
+def convert_bin_number_str_to_digit_number(bin_number_str):
+    return chr(int(bin_number_str, 2))
+
+n = int(input())
+word = change_to_bit(input())
+answer = []
+for i in range(n):
+    lt = i * 7
+    rt = (i+1) * 7
+    ch = convert_bin_number_str_to_digit_number(word[lt:rt])
+    answer.append(ch)
+print(''.join(answer), end='')
