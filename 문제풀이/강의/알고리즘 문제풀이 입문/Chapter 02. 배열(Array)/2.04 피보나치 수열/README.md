@@ -15,11 +15,14 @@
 # 풀이
 ```python
 n = int(input())
-result = [1, 1]
 
-for i in range(2, n):
-    result.append(result[i-1] + result[i-2])
-print(' '.join(map(str, result)), end='')
+answer = []
+for i in range(n):
+    if i == 0 or i == 1:
+        answer.append(1)
+    else:
+        answer.append(answer[i-2] + answer[i-1])
+print(*answer, end = '', sep=' ')
 ```
 - 순서대로 리스트 구성
 
